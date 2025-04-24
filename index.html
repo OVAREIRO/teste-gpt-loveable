@@ -1,251 +1,723 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>NeuroHub – Conecte-se ao Futuro</title>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet" />
-  <style>
-    :root {
-      --neon-cyan: #00ffff;
-      --neon-pink: #ff00ff;
-      --gradient: linear-gradient(135deg, var(--neon-cyan), var(--neon-pink));
-      --bg-dark: #0a0a0f;
-    }
-
-    * {
-      margin: 0;
-      box-sizing: border-box;
-    }
-
-    html, body {
-      height: 100%;
-      background: var(--bg-dark);
-      font-family: 'Space Grotesk', sans-serif;
-      color: white;
-      scroll-behavior: smooth;
-      perspective: 1000px;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      background: var(--gradient);
-      opacity: 0.1;
-      filter: blur(80px);
-      z-index: -1;
-      animation: moveBg 20s linear infinite alternate;
-    }
-
-    @keyframes moveBg {
-      0% { transform: translate(-50px, -50px); }
-      100% { transform: translate(50px, 50px); }
-    }
-
-    nav {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 1rem 2rem;
-      background: rgba(10, 10, 25, 0.6);
-      backdrop-filter: blur(12px);
-      position: fixed;
-      width: 100%;
-      top: 0;
-      z-index: 50;
-    }
-
-    nav h1 {
-      font-size: 1.5rem;
-      color: var(--neon-cyan);
-      text-shadow: 0 0 8px var(--neon-cyan), 0 0 16px white;
-    }
-
-    nav ul {
-      display: flex;
-      gap: 1.5rem;
-      list-style: none;
-    }
-
-    nav a {
-      color: #ccc;
-      text-decoration: none;
-      transition: 0.3s;
-    }
-
-    nav a:hover {
-      color: var(--neon-cyan);
-      text-shadow: 0 0 6px var(--neon-cyan);
-    }
-
-    section {
-      padding: 6rem 2rem 4rem;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      transform-style: preserve-3d;
-    }
-
-    .hero h2 {
-      font-size: 3rem;
-      background: var(--gradient);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      animation: pulseGlow 3s infinite ease-in-out alternate;
-    }
-
-    .hero p {
-      margin-top: 1rem;
-      max-width: 600px;
-      color: #ccc;
-    }
-
-    @keyframes pulseGlow {
-      0% { text-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-pink); }
-      100% { text-shadow: 0 0 15px white, 0 0 30px var(--neon-cyan); }
-    }
-
-    .glass {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 20px;
-      padding: 2rem;
-      max-width: 800px;
-      margin-top: 3rem;
-      backdrop-filter: blur(20px);
-      position: relative;
-    }
-
-    .glass::before {
-      content: "";
-      position: absolute;
-      inset: -2px;
-      background: var(--gradient);
-      filter: blur(16px);
-      z-index: -1;
-      opacity: 0.6;
-      mask: linear-gradient(white, transparent);
-      mask-composite: intersect;
-      animation: moveBg 8s infinite alternate;
-    }
-
-    .services {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-      gap: 2rem;
-      margin-top: 3rem;
-    }
-
-    .service-card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      padding: 1.5rem;
-      border-radius: 15px;
-      transition: transform 0.4s ease;
-      box-shadow: 0 0 12px rgba(0, 255, 255, 0.1);
-    }
-
-    .service-card:hover {
-      transform: scale(1.05) rotateY(6deg);
-      box-shadow: 0 0 24px rgba(0, 255, 255, 0.3);
-    }
-
-    .energy-btn {
-      background: var(--gradient);
-      color: black;
-      padding: 0.75rem 2rem;
-      border-radius: 9999px;
-      margin-top: 2rem;
-      font-weight: bold;
-      border: none;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      box-shadow: 0 0 12px var(--neon-cyan);
-      transition: 0.3s ease;
-    }
-
-    .energy-btn::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: radial-gradient(circle, rgba(255,255,255,0.2) 10%, transparent 60%);
-      opacity: 0;
-    }
-
-    .energy-btn:hover::after {
-      opacity: 1;
-      animation: pulse 1s infinite ease-in-out;
-    }
-
-    @keyframes pulse {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.1); }
-    }
-
-    footer {
-      padding: 2rem;
-      text-align: center;
-      color: #888;
-      background: #0a0a0f;
-      border-top: 1px solid #222;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NeonTech Futuro</title>
+    <style>
+        /* Importação da fonte Orbitron para estilo tech */
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap');
+        
+        /* Reset e variáveis CSS */
+        :root {
+            --neon-cyan: #00ffff;
+            --neon-magenta: #ff00ff;
+            --deep-black: #0a0a0f;
+            --glass-white: rgba(255, 255, 255, 0.1);
+            --rx: 0deg;
+            --ry: 0deg;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Orbitron', sans-serif;
+            background-color: var(--deep-black);
+            color: white;
+            min-height: 100vh;
+            perspective: 1000px;
+            overflow-x: hidden;
+            transform-style: preserve-3d;
+        }
+        
+        /* Efeito de fundo holográfico animado */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.15) 0%, transparent 40%);
+            animation: hologram 15s infinite alternate;
+            z-index: -1;
+        }
+        
+        @keyframes hologram {
+            0%, 100% {
+                opacity: 0.8;
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                opacity: 0.6;
+                transform: translateY(-20px) rotate(1deg);
+            }
+            50% {
+                opacity: 0.9;
+                transform: translateY(10px) rotate(-1deg);
+            }
+            75% {
+                opacity: 0.7;
+                transform: translateY(-10px) rotate(0.5deg);
+            }
+        }
+        
+        /* Navbar futurista com glassmorphism */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            background-color: rgba(10, 10, 15, 0.7);
+            border-bottom: 1px solid var(--glass-white);
+            z-index: 1000;
+            transform-style: preserve-3d;
+        }
+        
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3), 0 0 20px rgba(255, 0, 255, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .logo:hover {
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.5), 0 0 30px rgba(255, 0, 255, 0.5);
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+        
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: 500;
+            position: relative;
+            padding: 0.5rem 0;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+            transition: width 0.3s ease;
+        }
+        
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        
+        .nav-links a:hover {
+            text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-magenta);
+        }
+        
+        /* Seção Hero com efeito 3D e neon */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 5%;
+            position: relative;
+            transform-style: preserve-3d;
+            transform: rotateX(var(--rx)) rotateY(var(--ry));
+            transition: transform 0.5s ease-out;
+        }
+        
+        .hero h1 {
+            font-size: 4.5rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3), 0 0 20px rgba(255, 0, 255, 0.3);
+            animation: glow 3s infinite alternate;
+        }
+        
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 10px rgba(0, 255, 255, 0.3), 0 0 20px rgba(255, 0, 255, 0.3);
+            }
+            to {
+                text-shadow: 0 0 15px rgba(0, 255, 255, 0.5), 0 0 30px rgba(255, 0, 255, 0.5), 0 0 45px rgba(255, 0, 255, 0.2);
+            }
+        }
+        
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Botão neon com efeito pulsante */
+        .btn-neon {
+            position: relative;
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            background: transparent;
+            color: var(--neon-cyan);
+            border: 2px solid var(--neon-cyan);
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            cursor: pointer;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            z-index: 1;
+            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3), 0 0 20px rgba(0, 255, 255, 0.2);
+        }
+        
+        .btn-neon:hover {
+            color: var(--deep-black);
+            box-shadow: 0 0 15px var(--neon-cyan), 0 0 30px var(--neon-cyan);
+        }
+        
+        .btn-neon::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+            z-index: -1;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.5s ease;
+            border-radius: 50px;
+        }
+        
+        .btn-neon:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .btn-neon::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            animation: pulse 2s infinite;
+        }
+        
+        @keyframes pulse {
+            0% {
+                transform: scale(0.8);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.2;
+            }
+            100% {
+                transform: scale(1.2);
+                opacity: 0;
+            }
+        }
+        
+        .btn-neon:hover::after {
+            opacity: 0.2;
+        }
+        
+        /* Seção de destaque tecnológica com glassmorphism */
+        .tech-highlight {
+            padding: 8rem 5%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            transform-style: preserve-3d;
+        }
+        
+        .tech-card {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            padding: 3rem;
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transform-style: preserve-3d;
+            transform: rotateX(var(--rx)) rotateY(var(--ry));
+            transition: transform 0.5s ease-out;
+        }
+        
+        .tech-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.1), transparent);
+            transform: translateX(-100%);
+            transition: transform 0.6s ease;
+        }
+        
+        .tech-card:hover::before {
+            transform: translateX(100%);
+        }
+        
+        .tech-card h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+            color: white;
+            position: relative;
+            display: inline-block;
+        }
+        
+        .tech-card h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+        }
+        
+        .tech-card p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.8);
+            margin-bottom: 2rem;
+        }
+        
+        /* Seção de serviços com grid responsivo */
+        .services {
+            padding: 8rem 5%;
+            min-height: 100vh;
+            transform-style: preserve-3d;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 5rem;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3), 0 0 20px rgba(255, 0, 255, 0.3);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            perspective: 1000px;
+        }
+        
+        .service-card {
+            position: relative;
+            padding: 2.5rem;
+            background: rgba(10, 10, 15, 0.7);
+            border-radius: 15px;
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            transition: all 0.5s ease;
+            transform-style: preserve-3d;
+            transform: rotateX(var(--rx)) rotateY(var(--ry));
+            transition: transform 0.5s ease-out;
+            overflow: hidden;
+        }
+        
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-magenta));
+            z-index: -1;
+            border-radius: 16px;
+            opacity: 0;
+            transition: opacity 0.5s ease;
+        }
+        
+        .service-card:hover::before {
+            opacity: 1;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px) rotateX(var(--rx)) rotateY(var(--ry));
+            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.1), 0 10px 30px rgba(255, 0, 255, 0.1);
+        }
+        
+        .service-icon {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        
+        .service-card h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            color: white;
+        }
+        
+        .service-card p {
+            color: rgba(255, 255, 255, 0.7);
+            line-height: 1.6;
+        }
+        
+        /* Seção de contato */
+        .contact {
+            padding: 8rem 5%;
+            min-height: 80vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            transform-style: preserve-3d;
+        }
+        
+        .contact h2 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3), 0 0 20px rgba(255, 0, 255, 0.3);
+        }
+        
+        .contact p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+            color: rgba(255, 255, 255, 0.8);
+        }
+        
+        /* Footer neon */
+        footer {
+            padding: 3rem 5%;
+            background: rgba(10, 10, 15, 0.9);
+            border-top: 1px solid rgba(0, 255, 255, 0.1);
+            text-align: center;
+            position: relative;
+            transform-style: preserve-3d;
+        }
+        
+        footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, var(--neon-cyan), var(--neon-magenta), transparent);
+            box-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-magenta);
+        }
+        
+        .footer-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 1.5rem;
+        }
+        
+        .footer-logo {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3), 0 0 20px rgba(255, 0, 255, 0.3);
+        }
+        
+        .footer-links {
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        
+        .footer-links a {
+            color: rgba(255, 255, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        
+        .footer-links a:hover {
+            color: var(--neon-cyan);
+            text-shadow: 0 0 10px var(--neon-cyan);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+        
+        .social-links a {
+            color: white;
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            color: var(--neon-magenta);
+            transform: translateY(-5px);
+            text-shadow: 0 0 15px var(--neon-magenta);
+        }
+        
+        .copyright {
+            margin-top: 2rem;
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 0.9rem;
+        }
+        
+        /* Efeito de reação ao mouse */
+        @media (hover: hover) {
+            body:hover {
+                --rx: calc(var(--mouse-y) * -0.5deg);
+                --ry: calc(var(--mouse-x) * 0.5deg);
+            }
+        }
+        
+        /* Responsividade */
+        @media (max-width: 992px) {
+            .hero h1 {
+                font-size: 3.5rem;
+            }
+            
+            .tech-card h2 {
+                font-size: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .navbar {
+                padding: 1rem 5%;
+            }
+            
+            .logo {
+                font-size: 1.5rem;
+            }
+            
+            .nav-links {
+                gap: 1.5rem;
+            }
+            
+            .hero h1 {
+                font-size: 2.8rem;
+            }
+            
+            .hero p {
+                font-size: 1.1rem;
+            }
+            
+            .btn-neon {
+                padding: 0.8rem 2rem;
+                font-size: 1rem;
+            }
+            
+            .tech-card {
+                padding: 2rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+                margin-bottom: 3rem;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact h2 {
+                font-size: 2.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p {
+                font-size: 1rem;
+            }
+            
+            .nav-links {
+                gap: 1rem;
+            }
+            
+            .tech-card {
+                padding: 1.5rem;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .service-card {
+                padding: 1.8rem;
+            }
+            
+            .contact h2 {
+                font-size: 2rem;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-
-  <nav>
-    <h1>NeuroHub</h1>
-    <ul>
-      <li><a href="#home">Início</a></li>
-      <li><a href="#tech">Tecnologia</a></li>
-      <li><a href="#services">Serviços</a></li>
-      <li><a href="#contact">Contato</a></li>
-    </ul>
-  </nav>
-
-  <section id="home" class="hero">
-    <h2>Conecte sua mente ao futuro</h2>
-    <p>Uma nova era de interações começa com a NeuroHub. Conexões cerebrais. Dados em tempo real. Controle absoluto.</p>
-    <button class="energy-btn">Começar</button>
-  </section>
-
-  <section id="tech">
-    <div class="glass">
-      <h3 style="color: var(--neon-pink); font-size: 1.8rem;">Tecnologia Neural Inovadora</h3>
-      <p style="margin-top: 1rem;">Interface direta com o córtex cerebral usando IA autoaprendente. Com segurança criptografada e visualização holográfica imersiva.</p>
-    </div>
-  </section>
-
-  <section id="services">
-    <h3 style="color: var(--neon-cyan); font-size: 2rem;">Serviços</h3>
-    <div class="services">
-      <div class="service-card">
-        <h4>Controle Mental</h4>
-        <p>Comandos e rotinas acionados pelo pensamento, sem toque ou voz.</p>
-      </div>
-      <div class="service-card">
-        <h4>Visualização Holográfica</h4>
-        <p>Dados em tempo real projetados diretamente na retina ou em superfícies 3D.</p>
-      </div>
-      <div class="service-card">
-        <h4>IA Cognitiva</h4>
-        <p>Assistentes pessoais que evoluem com você. Literalmente.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="contact">
-    <h3 style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--neon-pink);">Fale conosco</h3>
-    <p style="color: #aaa;">Quer explorar essa tecnologia? Nosso time está pronto para te conectar ao futuro.</p>
-    <button class="energy-btn">Entrar em contato</button>
-  </section>
-
-  <footer>
-    © 2025 NeuroHub. Todos os direitos reservados.
-  </footer>
-
+    <!-- Navbar futurista -->
+    <nav class="navbar">
+        <div class="logo">NEON<span>TECH</span></div>
+        <div class="nav-links">
+            <a href="#home">Início</a>
+            <a href="#tech">Tecnologia</a>
+            <a href="#services">Serviços</a>
+            <a href="#contact">Contato</a>
+        </div>
+    </nav>
+    
+    <!-- Seção Hero -->
+    <section class="hero" id="home">
+        <h1>INOVE COM TECNOLOGIA HOLOGRÁFICA</h1>
+        <p>Descubra o futuro da interação digital com nossas soluções em realidade aumentada, interfaces holográficas e tecnologia de ponta para transformar sua experiência.</p>
+        <a href="#tech" class="btn-neon">EXPLORAR</a>
+    </section>
+    
+    <!-- Seção de destaque tecnológica -->
+    <section class="tech-highlight" id="tech">
+        <div class="tech-card">
+            <h2>Tecnologia Quântica</h2>
+            <p>Nossa plataforma utiliza princípios da computação quântica para oferecer processamento de dados em velocidades nunca antes vistas. Com algoritmos revolucionários, resolvemos problemas complexos em segundos.</p>
+            <p>Imagine poder simular moléculas para descoberta de medicamentos ou otimizar cadeias logísticas globais em tempo real. Isso é o que nossa tecnologia torna possível hoje.</p>
+            <a href="#contact" class="btn-neon" style="margin-top: 2rem;">SAIBA MAIS</a>
+        </div>
+    </section>
+    
+    <!-- Seção de serviços -->
+    <section class="services" id="services">
+        <h2 class="section-title">NOSSOS SERVIÇOS</h2>
+        <div class="services-grid">
+            <div class="service-card">
+                <div class="service-icon">⎔</div>
+                <h3>Interfaces Holográficas</h3>
+                <p>Crie experiências imersivas com nossas interfaces holográficas personalizáveis, perfeitas para apresentações, educação e entretenimento.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">⎖</div>
+                <h3>Realidade Aumentada</h3>
+                <p>Soluções AR para varejo, manufatura e treinamento, integrando dados digitais ao mundo físico de forma intuitiva.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">⎗</div>
+                <h3>Inteligência Artificial</h3>
+                <p>Sistemas de IA que aprendem e se adaptam, oferecendo insights valiosos e automação inteligente para seu negócio.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">⎘</div>
+                <h3>Visualização de Dados 3D</h3>
+                <p>Transforme dados complexos em visualizações interativas e compreensíveis com nossa tecnologia de renderização avançada.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">⎙</div>
+                <h3>Consultoria Tecnológica</h3>
+                <p>Nossos especialistas ajudam você a navegar no cenário tecnológico em constante evolução e implementar as melhores soluções.</p>
+            </div>
+            <div class="service-card">
+                <div class="service-icon">⎚</div>
+                <h3>Desenvolvimento Customizado</h3>
+                <p>Soluções sob medida para suas necessidades específicas, desde protótipos até sistemas completos de produção.</p>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Seção de contato -->
+    <section class="contact" id="contact">
+        <h2>PRONTO PARA O FUTURO?</h2>
+        <p>Entre em contato conosco para descobrir como nossa tecnologia pode transformar seu negócio. Nossa equipe está pronta para ajudar você a dar o próximo passo na evolução digital.</p>
+        <a href="#" class="btn-neon">FALE CONOSCO</a>
+    </section>
+    
+    <!-- Footer -->
+    <footer>
+        <div class="footer-content">
+            <div class="footer-logo">NEON<span>TECH</span></div>
+            <div class="footer-links">
+                <a href="#home">Início</a>
+                <a href="#tech">Tecnologia</a>
+                <a href="#services">Serviços</a>
+                <a href="#contact">Contato</a>
+                <a href="#">Privacidade</a>
+                <a href="#">Termos</a>
+            </div>
+            <div class="social-links">
+                <a href="#">⎈</a>
+                <a href="#">⎉</a>
+                <a href="#">⎊</a>
+                <a href="#">⎋</a>
+            </div>
+            <div class="copyright">
+                © 2025 NeonTech Futuro. Todos os direitos reservados.
+            </div>
+        </div>
+    </footer>
+    
+    <!-- Script para efeito de movimento do mouse (puro CSS não suporta isso, então usamos um mínimo de JS) -->
+    <script>
+        // Pequeno script apenas para o efeito 3D com mouse
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX / window.innerWidth;
+            const y = e.clientY / window.innerHeight;
+            
+            document.documentElement.style.setProperty('--mouse-x', (x - 0.5) * 2);
+            document.documentElement.style.setProperty('--mouse-y', (y - 0.5) * 2);
+        });
+    </script>
 </body>
 </html>
