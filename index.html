@@ -3,109 +3,168 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Holographic Card</title>
+  <title>NeuroHub – Conecte-se ao Futuro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;700&display=swap" rel="stylesheet" />
   <style>
-    /* === ESTILO FUTURISTA HOLOGRÁFICO 3D === */
     :root {
       --neon-cyan: #00ffff;
       --neon-pink: #ff00ff;
-      --bg-dark: #0a0a0a;
       --gradient: linear-gradient(135deg, var(--neon-cyan), var(--neon-pink));
+      --bg-dark: #0a0a0f;
     }
 
-    body {
+    * {
       margin: 0;
-      height: 100vh;
+      box-sizing: border-box;
+    }
+
+    html, body {
+      height: 100%;
       background: var(--bg-dark);
+      font-family: 'Space Grotesk', sans-serif;
+      color: white;
+      scroll-behavior: smooth;
+      perspective: 1000px;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background: var(--gradient);
+      opacity: 0.1;
+      filter: blur(80px);
+      z-index: -1;
+      animation: moveBg 20s linear infinite alternate;
+    }
+
+    @keyframes moveBg {
+      0% { transform: translate(-50px, -50px); }
+      100% { transform: translate(50px, 50px); }
+    }
+
+    nav {
       display: flex;
+      justify-content: space-between;
       align-items: center;
-      justify-content: center;
-      perspective: 1200px;
-      font-family: 'Segoe UI', sans-serif;
+      padding: 1rem 2rem;
+      background: rgba(10, 10, 25, 0.6);
+      backdrop-filter: blur(12px);
+      position: fixed;
+      width: 100%;
+      top: 0;
+      z-index: 50;
     }
 
-    .card {
-      width: 320px;
-      padding: 2rem;
-      background: rgba(255, 255, 255, 0.05);
-      border-radius: 20px;
-      border: 1px solid rgba(255, 255, 255, 0.15);
-      position: relative;
+    nav h1 {
+      font-size: 1.5rem;
+      color: var(--neon-cyan);
+      text-shadow: 0 0 8px var(--neon-cyan), 0 0 16px white;
+    }
+
+    nav ul {
+      display: flex;
+      gap: 1.5rem;
+      list-style: none;
+    }
+
+    nav a {
+      color: #ccc;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: var(--neon-cyan);
+      text-shadow: 0 0 6px var(--neon-cyan);
+    }
+
+    section {
+      padding: 6rem 2rem 4rem;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
       transform-style: preserve-3d;
-      transform: rotateX(var(--rx, 0deg)) rotateY(var(--ry, 0deg));
-      transition: transform 0.1s ease;
-      backdrop-filter: blur(20px);
-      box-shadow: 0 0 20px rgba(0, 255, 255, 0.1);
-      overflow: hidden;
     }
 
-    .card::before {
+    .hero h2 {
+      font-size: 3rem;
+      background: var(--gradient);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      animation: pulseGlow 3s infinite ease-in-out alternate;
+    }
+
+    .hero p {
+      margin-top: 1rem;
+      max-width: 600px;
+      color: #ccc;
+    }
+
+    @keyframes pulseGlow {
+      0% { text-shadow: 0 0 5px var(--neon-cyan), 0 0 10px var(--neon-pink); }
+      100% { text-shadow: 0 0 15px white, 0 0 30px var(--neon-cyan); }
+    }
+
+    .glass {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 2rem;
+      max-width: 800px;
+      margin-top: 3rem;
+      backdrop-filter: blur(20px);
+      position: relative;
+    }
+
+    .glass::before {
       content: "";
       position: absolute;
-      inset: -3px;
+      inset: -2px;
       background: var(--gradient);
-      filter: blur(12px);
+      filter: blur(16px);
       z-index: -1;
-      opacity: 0.8;
-      animation: hologlow 4s ease-in-out infinite alternate;
+      opacity: 0.6;
       mask: linear-gradient(white, transparent);
       mask-composite: intersect;
+      animation: moveBg 8s infinite alternate;
     }
 
-    @keyframes hologlow {
-      0% {
-        transform: translate(-10px, -10px);
-      }
-      100% {
-        transform: translate(10px, 10px);
-      }
+    .services {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
     }
 
-    .profile-img {
-      width: 100px;
-      height: 100px;
-      border-radius: 9999px;
-      border: 3px solid var(--neon-cyan);
-      margin: 0 auto;
-      box-shadow: 0 0 12px var(--neon-cyan);
+    .service-card {
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 1.5rem;
+      border-radius: 15px;
+      transition: transform 0.4s ease;
+      box-shadow: 0 0 12px rgba(0, 255, 255, 0.1);
     }
 
-    h2 {
-      text-align: center;
-      margin-top: 1rem;
-      font-size: 1.5rem;
-      color: white;
-      text-shadow:
-        0 0 5px var(--neon-cyan),
-        0 0 10px var(--neon-pink),
-        0 0 15px white;
-    }
-
-    p {
-      text-align: center;
-      color: rgba(255, 255, 255, 0.7);
-      margin: 1rem 0;
-      font-size: 0.95rem;
+    .service-card:hover {
+      transform: scale(1.05) rotateY(6deg);
+      box-shadow: 0 0 24px rgba(0, 255, 255, 0.3);
     }
 
     .energy-btn {
-      display: block;
-      margin: 0 auto;
-      padding: 0.7rem 1.5rem;
       background: var(--gradient);
       color: black;
-      border: none;
+      padding: 0.75rem 2rem;
       border-radius: 9999px;
+      margin-top: 2rem;
       font-weight: bold;
+      border: none;
       cursor: pointer;
       position: relative;
       overflow: hidden;
       box-shadow: 0 0 12px var(--neon-cyan);
-      transition: transform 0.2s;
-    }
-
-    .energy-btn:hover {
-      transform: scale(1.05);
+      transition: 0.3s ease;
     }
 
     .energy-btn::after {
@@ -114,7 +173,6 @@
       inset: 0;
       background: radial-gradient(circle, rgba(255,255,255,0.2) 10%, transparent 60%);
       opacity: 0;
-      transition: opacity 0.3s;
     }
 
     .energy-btn:hover::after {
@@ -123,35 +181,71 @@
     }
 
     @keyframes pulse {
-      0%, 100% {
-        transform: scale(1);
-      }
-      50% {
-        transform: scale(1.05);
-      }
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.1); }
+    }
+
+    footer {
+      padding: 2rem;
+      text-align: center;
+      color: #888;
+      background: #0a0a0f;
+      border-top: 1px solid #222;
     }
   </style>
 </head>
 <body>
 
-  <!-- Card com efeito holográfico -->
-  <div class="card" id="holo-card">
-    <img src="https://unsplash.it/100/100?random" alt="Perfil" class="profile-img" />
-    <h2>Neo Aurora</h2>
-    <p>Especialista em Interfaces Neurais & Realidade Holográfica. Explorando conexões entre mente e máquina.</p>
-    <button class="energy-btn">Conectar</button>
-  </div>
+  <nav>
+    <h1>NeuroHub</h1>
+    <ul>
+      <li><a href="#home">Início</a></li>
+      <li><a href="#tech">Tecnologia</a></li>
+      <li><a href="#services">Serviços</a></li>
+      <li><a href="#contact">Contato</a></li>
+    </ul>
+  </nav>
 
-  <script>
-    // 🎯 Efeito 3D baseado no movimento do mouse (sem bibliotecas externas)
-    const card = document.getElementById('holo-card');
-    document.body.addEventListener('mousemove', (e) => {
-      const x = e.clientX / window.innerWidth - 0.5;
-      const y = e.clientY / window.innerHeight - 0.5;
-      card.style.setProperty('--rx', `${y * 10}deg`);
-      card.style.setProperty('--ry', `${x * 20}deg`);
-    });
-  </script>
+  <section id="home" class="hero">
+    <h2>Conecte sua mente ao futuro</h2>
+    <p>Uma nova era de interações começa com a NeuroHub. Conexões cerebrais. Dados em tempo real. Controle absoluto.</p>
+    <button class="energy-btn">Começar</button>
+  </section>
+
+  <section id="tech">
+    <div class="glass">
+      <h3 style="color: var(--neon-pink); font-size: 1.8rem;">Tecnologia Neural Inovadora</h3>
+      <p style="margin-top: 1rem;">Interface direta com o córtex cerebral usando IA autoaprendente. Com segurança criptografada e visualização holográfica imersiva.</p>
+    </div>
+  </section>
+
+  <section id="services">
+    <h3 style="color: var(--neon-cyan); font-size: 2rem;">Serviços</h3>
+    <div class="services">
+      <div class="service-card">
+        <h4>Controle Mental</h4>
+        <p>Comandos e rotinas acionados pelo pensamento, sem toque ou voz.</p>
+      </div>
+      <div class="service-card">
+        <h4>Visualização Holográfica</h4>
+        <p>Dados em tempo real projetados diretamente na retina ou em superfícies 3D.</p>
+      </div>
+      <div class="service-card">
+        <h4>IA Cognitiva</h4>
+        <p>Assistentes pessoais que evoluem com você. Literalmente.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h3 style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--neon-pink);">Fale conosco</h3>
+    <p style="color: #aaa;">Quer explorar essa tecnologia? Nosso time está pronto para te conectar ao futuro.</p>
+    <button class="energy-btn">Entrar em contato</button>
+  </section>
+
+  <footer>
+    © 2025 NeuroHub. Todos os direitos reservados.
+  </footer>
 
 </body>
 </html>
