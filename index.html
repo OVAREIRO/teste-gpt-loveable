@@ -2,906 +2,945 @@
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, shrink-to-fit=no">
-    <meta name="theme-color" content="#222429"> <meta name="description" content="Explore nossos cursos e produtos digitais.">
-    <meta property="og:description" name="description" content="Explore nossos cursos e produtos digitais.">
-    <meta name="keywords" content="cursos online, ebooks, produtos digitais, aprendizado">
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Sua Loja de Cursos - Produtos">
-    <meta property="og:description" content="Explore nossos cursos e produtos digitais.">
-    <meta property="og:image" content="https://via.placeholder.com/300x100.png?text=Sua+Logo">
-    <meta property="og:url" content="#">
-
-    <link rel="shortcut icon" type="image/png" href="https://via.placeholder.com/32x32.png?text=Fav">
-    <title>Sua Loja de Cursos - Produtos</title>
-
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechStore - Produtos Digitais</title>
     <style>
-        /* === Variáveis de Cores (Inspiradas em Axtron) === */
+        /* Reset e Variáveis CSS */
         :root {
-            --c1: #8a4ecf; /* Roxo principal */
-            --c2: #6f3db4; /* Roxo mais escuro (hover) */
-            --c3: #1e1f24; /* Fundo principal escuro */
-            --c4: #2a2c33; /* Fundo secundário (cards, sidebar) */
-            --c5: #363942; /* Fundo sutil (headers internos, hover) */
-            --bo: rgba(255, 255, 255, 0.1); /* Cor da borda */
-            --text-color: #f0f0f0; /* Cor do texto principal */
-            --text-secondary: #a0a0a0; /* Cor do texto secundário */
-            --br: 8px; /* Border radius */
-            --brm: 6px; /* Border radius menor */
+            --bg-dark: #1a1a1f;
+            --bg-darker: #121216;
+            --bg-light: #2a2a32;
+            --primary: #00a8ff;
+            --primary-hover: #0095e0;
+            --text: #ffffff;
+            --text-secondary: #b0b0b0;
+            --border: rgba(255, 255, 255, 0.1);
+            --border-radius: 8px;
+            --box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
         }
 
         body {
-            background-color: var(--c3);
-            color: var(--text-color);
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte genérica */
-            padding-top: 0; /* Reset padding initially */
-            transition: padding-top 0.3s ease-in-out;
+            background-color: var(--bg-dark);
+            color: var(--text);
+            line-height: 1.6;
         }
 
-        /* === Estilos do Header (Inspirados em Axtron) === */
+        /* Barra de Anúncio */
         .announcement-bar {
-            background-color: var(--c1);
+            background-color: var(--primary);
             color: white;
-            padding: 8px 15px;
             text-align: center;
+            padding: 8px 0;
             font-size: 14px;
         }
+
         .announcement-bar a {
             color: white;
-            font-weight: 600;
+            font-weight: bold;
             text-decoration: none;
         }
-        .announcement-bar a:hover {
-            text-decoration: underline;
-        }
-        .announcement-bar i {
-            vertical-align: middle;
-        }
 
-        header {
-            position: sticky;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 1030; /* Acima do conteúdo */
-            background-color: var(--c4); /* Fundo do header */
-            border-bottom: 1px solid var(--bo);
-            transition: all 0.3s ease-in-out;
-        }
-
-        header.onScroll {
-             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
-             /* background-color: rgba(30, 31, 36, 0.9); /* Fundo com leve transparência */
-             /* backdrop-filter: blur(5px); */
-        }
-
-        .navbarHome {
+        /* Navbar */
+        .navbar {
+            background-color: var(--bg-darker);
+            padding: 1rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.8rem 1.5rem; /* Ajuste de padding */
-            flex-wrap: wrap; /* Permite quebrar linha em telas menores */
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
 
         .navbar-brand img {
-            height: 40px; /* Ajuste a altura da sua logo */
-            vertical-align: middle;
+            height: 30px;
+            display: block; /* Para evitar espaço extra abaixo da imagem */
         }
 
-        .navBtn .newBtn {
-            color: var(--text-secondary);
-            background-color: transparent;
-            border: 1px solid var(--bo);
+        .nav-links {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .nav-links a {
+            color: var(--text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .nav-buttons {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .btn {
             padding: 0.5rem 1rem;
-            margin-right: 0.5rem;
-            transition: all 0.3s ease;
-            font-size: 0.9rem;
-            border-radius: var(--brm);
-        }
-        .navBtn .newBtn i {
-            margin-right: 0.4rem;
-            font-size: 1rem;
-        }
-
-        .navBtn .newBtn:hover, .navBtn .newBtn.active {
-            background-color: var(--c5);
-            color: var(--text-color);
-            border-color: var(--c1);
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer; /* Adicionado para indicar clicabilidade */
+            border: none; /* Reset de borda padrão */
         }
 
-        .auth-actions .auth-btn {
-            background-color: var(--c1);
+        .btn-primary {
+            background-color: var(--primary);
             color: white;
-            border: none;
-            padding: 0.6rem 1.2rem;
-            border-radius: var(--brm);
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-            font-size: 0.9rem;
-        }
-        .auth-actions .auth-btn:hover {
-            background-color: var(--c2);
-        }
-        .auth-actions .auth-btn i {
-             margin-right: 0.5rem;
         }
 
-        .menu-toggle { /* Botão do Menu Mobile */
-            background: none;
-            border: 1px solid var(--bo);
-            color: var(--text-secondary);
-            font-size: 1.8rem;
-            padding: 0.2rem 0.6rem;
-            border-radius: var(--brm);
-            cursor: pointer;
-            margin-left: 1rem; /* Espaço à esquerda */
-        }
-        .menu-toggle:hover {
-            color: var(--text-color);
-            background-color: var(--c5);
+        .btn-primary:hover {
+            background-color: var(--primary-hover);
+            transform: translateY(-2px);
+            box-shadow: var(--box-shadow);
         }
 
-        /* Adaptação para telas menores - Oculta botões desktop */
-        @media (max-width: 991.98px) {
-            .navBtn, .auth-actions {
-                display: none;
-            }
-            .navbar-collapse { /* Oculta menu desktop padrão */
-                 display: none !important;
-            }
-            .navbarHome {
-                padding: 0.8rem 1rem; /* Menor padding no mobile */
-            }
-        }
-        /* Exibe o botão de menu mobile apenas em telas menores */
-        @media (min-width: 992px) {
-            .menu-toggle {
-                display: none;
-            }
-        }
-
-        /* === Menu Mobile (adaptado) === */
-        .mobile-menu {
-            position: fixed;
-            top: 0;
-            left: -100%; /* Começa fora da tela */
-            width: 100%;
-            max-width: 320px; /* Largura do menu */
-            height: 100vh;
-            background-color: var(--c4);
-            z-index: 1040;
-            transition: left 0.3s ease-in-out;
-            display: flex;
-            flex-direction: column;
-            border-right: 1px solid var(--bo);
-            overflow-y: auto;
-        }
-
-        .mobile-menu.open {
-            left: 0; /* Entra na tela */
-        }
-
-        .mobile-auth-container {
-            padding: 1.5rem;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .mobile-auth-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 2rem;
-        }
-
-        .mobile-auth-logo {
-            height: 35px;
-        }
-
-        .close-menu {
-            background: none;
-            border: none;
-            color: var(--text-secondary);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-         .close-menu:hover {
-             color: var(--text-color);
-         }
-
-        .mobile-auth-nav a {
-            display: block;
-            color: var(--text-secondary);
-            padding: 0.8rem 0;
-            text-decoration: none;
-            font-size: 1rem;
-            border-bottom: 1px solid var(--bo);
-            transition: color 0.2s ease;
-        }
-        .mobile-auth-nav a:hover, .mobile-auth-nav a.active {
-            color: var(--text-color);
-        }
-        .mobile-auth-nav a i {
-            margin-right: 0.8rem;
-            color: var(--c1);
-            width: 20px; /* Alinhamento */
-            text-align: center;
-        }
-        .mobile-auth-nav a:last-child {
-            border-bottom: none;
-        }
-
-        .mobile-auth-content {
-            margin-top: auto; /* Empurra para baixo */
-            padding-top: 2rem;
-            border-top: 1px solid var(--bo);
-        }
-
-        .auth-title {
-            font-size: 1.2rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
-            text-align: center;
-        }
-        .auth-subtitle {
-             font-size: 0.9rem;
-             color: var(--text-secondary);
-             text-align: center;
-             margin-bottom: 1.5rem;
-         }
-
-        .auth-options .auth-button {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 100%;
-            padding: 0.8rem;
-            margin-bottom: 0.8rem;
-            border: 1px solid var(--bo);
-            background-color: var(--c5);
-            color: var(--text-color);
-            border-radius: var(--brm);
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: background-color 0.3s ease;
-        }
-        .auth-options .auth-button:hover {
-            background-color: var(--c3);
-        }
-        .auth-options .auth-button i {
-            margin-right: 0.7rem;
-            font-size: 1.1rem;
-        }
-        .auth-options .login-button i { color: var(--c1); } /* Exemplo de cor */
-        .auth-options .register-button i { color: #28a745; } /* Exemplo de cor */
-
-        .divider {
-            text-align: center;
-            margin: 1rem 0;
-            color: var(--text-secondary);
-            font-size: 0.8rem;
-            position: relative;
-        }
-        .divider span {
-            background-color: var(--c4);
-            padding: 0 10px;
-            position: relative;
-            z-index: 1;
-        }
-        .divider::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background-color: var(--bo);
-            z-index: 0;
-        }
-
-
-        /* === Breadcrumbs (Estilos de Axtron) === */
-        .breadcrumbs-container {
-            background-color: var(--c4); /* Fundo similar */
-            margin-bottom: 2.5rem; /* Espaçamento abaixo */
-            padding: 10px 1.5rem;
-            border-bottom: 1px solid var(--bo);
-            /* backdrop-filter: blur(6px); /* Efeito opcional */
-        }
-        .breadcrumb {
-            margin-bottom: 0;
-            padding: 0;
+        .btn-outline {
             background-color: transparent;
-            font-size: 14px;
+            color: var(--primary);
+            border: 1px solid var(--primary);
         }
-        .breadcrumb-item {
-            display: inline-flex; /* Ajuste para alinhamento */
+
+        .btn-outline:hover {
+            background-color: rgba(0, 168, 255, 0.1);
+        }
+
+        /* Breadcrumbs */
+        .breadcrumbs {
+            padding: 1rem 2rem;
+            background-color: var(--bg-darker);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .breadcrumb {
+            display: flex;
             align-items: center;
+            gap: 0.5rem;
+            list-style: none;
+            font-size: 0.9rem; /* Tamanho ligeiramente menor */
         }
+
+        .breadcrumb-item {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary); /* Cor padrão */
+        }
+
+        .breadcrumb-item::after { /* Separador */
+            content: '/';
+            margin-left: 0.5rem;
+            color: var(--text-secondary);
+        }
+
+        .breadcrumb-item:last-child::after {
+             content: ''; /* Remove separador do último item */
+        }
+
         .breadcrumb-item a {
-            color: var(--c1);
+            color: var(--primary);
             text-decoration: none;
-            transition: color 0.2s ease;
+            transition: color 0.3s;
         }
         .breadcrumb-item a:hover {
-            color: var(--text-color);
+            text-decoration: underline;
         }
-        .breadcrumb-item a i {
-            color: var(--text-color); /* Ícone da home */
-            font-size: 1.1em; /* Tamanho do ícone */
-        }
+
         .breadcrumb-item.active {
-            color: var(--text-secondary); /* Cor do item ativo */
-        }
-        .breadcrumb-item + .breadcrumb-item::before {
-            color: var(--text-secondary); /* Cor do separador */
-            content: "›";
-            padding: 0 8px;
-        }
-        @media (max-width: 767.98px) {
-            .breadcrumbs-container {
-                 padding: 10px 1rem;
-                 margin-bottom: 1.5rem;
-            }
-             .breadcrumb {
-                 font-size: 13px;
-             }
+            color: var(--text); /* Cor do item ativo */
+            font-weight: 500;
         }
 
-        /* === Conteúdo Principal === */
-        .main-content {
-            padding-bottom: 4rem; /* Espaço antes do rodapé */
-        }
-
-        .page-content {
-            position: relative;
-            width: 100%; /* Usa container do Bootstrap */
-            max-width: 1300px; /* Similar ao Axtron */
-            margin: 0 auto;
-            z-index: 1;
-        }
-
-        /* === Hero Section (Adaptada) === */
-        .hero-section-pr {
-            position: relative;
-            margin: 0 0 3rem;
+        /* Hero Section */
+        .hero-section {
+            padding: 4rem 2rem;
             text-align: center;
-            background: var(--c4); /* Fundo */
-            border: 1px solid var(--bo);
-            border-radius: var(--br);
-            overflow: hidden;
-            padding: 4rem 2rem; /* Padding interno */
+            background-color: var(--bg-light);
+            border-radius: var(--border-radius);
+            margin: 2rem;
+            border: 1px solid var(--border);
         }
 
         .hero-title {
-            font-size: 2.5rem; /* Tamanho ajustado */
-            font-weight: 700;
-            color: var(--text-color);
+            font-size: 2.5rem;
             margin-bottom: 1rem;
+            background: linear-gradient(90deg, var(--primary), #00f7ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            font-weight: 700; /* Mais destaque */
         }
 
         .hero-subtitle {
             font-size: 1.1rem;
             color: var(--text-secondary);
             max-width: 600px;
-            margin: 0 auto 2rem auto;
+            margin: 0 auto 2rem;
         }
 
-        .hero-cta { /* Botão de chamada */
-            display: inline-flex;
+        /* Seção de Mais Vendidos / Produtos */
+        .products-section { /* Classe genérica para seções de produtos */
+            margin: 2rem;
+            border: 1px solid var(--border);
+            border-radius: var(--border-radius);
+            overflow: hidden; /* Para conter bordas arredondadas */
+            background-color: var(--bg-light); /* Fundo para a seção inteira */
+        }
+
+        .section-header {
+            background-color: var(--bg-darker); /* Cabeçalho um pouco mais escuro */
+            padding: 1rem 1.5rem;
+            display: flex;
             align-items: center;
-            gap: 0.75rem;
-            background: var(--c1);
-            color: white; /* Texto branco */
-            padding: 0.8rem 1.8rem;
-            border-radius: var(--brm);
-            font-weight: 600;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            font-size: 1rem;
+            gap: 0.75rem; /* Espaçamento ligeiramente maior */
+            border-bottom: 1px solid var(--border);
+            color: var(--text); /* Garante cor do texto e ícone */
         }
-        .hero-cta:hover {
-            background: var(--c2);
-            transform: translateY(-2px);
+
+        .section-header svg { /* Estilo para ícones no header */
+            fill: var(--primary); /* Cor do ícone */
+            flex-shrink: 0; /* Evita que o ícone seja espremido */
         }
-        .hero-cta i {
+
+        .section-title {
             font-size: 1.2rem;
+            font-weight: 600;
         }
 
-        @media (max-width: 768px) {
-            .hero-section-pr { padding: 3rem 1rem; margin-bottom: 2rem; }
-            .hero-title { font-size: 2rem; }
-            .hero-subtitle { font-size: 1rem; }
-            .hero-cta { font-size: 0.9rem; padding: 0.7rem 1.5rem; }
-        }
-
-        /* === Layout Produtos (Sidebar + Grid) === */
-        .products-layout {
+        .products-grid {
             display: grid;
-            grid-template-columns: 260px 1fr; /* Coluna da sidebar e coluna dos produtos */
-            gap: 2rem;
-            align-items: start;
+            /* Usar a mesma definição para a grade principal e a de mais vendidos */
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); /* Ajuste minmax se necessário */
+            gap: 1px;
+            background-color: var(--border); /* Cor das "linhas" da grade */
+            /* padding: 1px;  Adiciona um pequeno espaço para a borda funcionar visualmente */
+        }
+
+        .product-card {
+            background-color: var(--bg-light); /* Fundo do card */
+            padding: 1.2rem; /* Mais padding interno */
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            text-decoration: none;
+            color: var(--text);
+            transition: background-color 0.3s, transform 0.3s; /* Adiciona transição de transform */
+            border-bottom: 1px solid var(--border); /* Linha separadora sutil */
+            border-right: 1px solid var(--border); /* Linha separadora sutil */
+        }
+
+        .products-grid > .product-card:last-child {
+             border-bottom: none; /* Remove borda inferior do último card da grade se for coluna única */
+        }
+
+        .product-card:hover {
+            background-color: var(--bg-darker);
+            transform: translateY(-3px); /* Efeito sutil de elevação */
+            z-index: 10; /* Garante que fique por cima ao levantar */
+            position: relative; /* Necessário para z-index funcionar bem */
+        }
+
+        .product-image {
+            width: 60px;  /* Imagem ligeiramente maior */
+            height: 60px;
+            background-color: var(--bg-dark); /* Fundo da imagem mais escuro */
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            flex-shrink: 0;
+            border: 1px solid var(--border); /* Borda sutil na imagem */
+        }
+
+        .product-image img {
+            width: 70%; /* Ajusta o tamanho do ícone dentro do container */
+            height: 70%;
+            object-fit: contain;
+        }
+
+        .product-info {
+            flex: 1;
+            min-width: 0; /* Para text-overflow funcionar corretamente */
+        }
+
+        .product-title {
+            font-weight: 600; /* Título mais forte */
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            margin-bottom: 0.4rem; /* Espaçamento ajustado */
+            font-size: 1rem; /* Tamanho do título */
+        }
+
+        .product-details {
+            display: flex;
+            justify-content: space-between;
+            align-items: center; /* Alinha verticalmente */
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+        }
+
+        .product-price, .product-stock { /* Classes específicas para preço/estoque */
+             /* Estilos podem ser adicionados aqui se necessário */
+        }
+
+        .product-sales {
+            color: var(--primary);
+            font-weight: 500; /* Destaca as vendas */
+        }
+
+        /* Layout Principal */
+        .main-content {
+            display: grid;
+            grid-template-columns: 250px 1fr; /* Coluna fixa para sidebar, restante flexível */
+            gap: 1.5rem;
+            padding: 0 2rem 2rem; /* Padding inferior maior */
+            margin-top: 2rem; /* Espaço após seções superiores */
         }
 
         /* Sidebar */
         .sidebar {
-            background: var(--c4);
-            border: 1px solid var(--bo);
-            border-radius: var(--br);
-            overflow: hidden;
+            background-color: var(--bg-light);
+            border-radius: var(--border-radius);
+            border: 1px solid var(--border);
+            overflow: hidden; /* Garante que o conteúdo não vaze */
+            height: fit-content; /* Ajusta altura ao conteúdo */
             position: sticky; /* Faz a sidebar acompanhar a rolagem */
-            top: 100px; /* Ajuste conforme a altura do header + espaço */
+            top: 80px; /* Distância do topo (altura da navbar + algum espaço) */
         }
+
         .sidebar-header {
-            background: var(--c5);
-            padding: 1.2rem 1.5rem;
-            border-bottom: 1px solid var(--bo);
+            padding: 1rem 1.5rem;
+            background-color: var(--bg-darker); /* Igual ao header de seção */
+            border-bottom: 1px solid var(--border);
         }
+
         .sidebar-title {
-            margin: 0;
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-color); /* Título mais claro */
             display: flex;
             align-items: center;
             gap: 0.75rem;
+            font-size: 1.1rem; /* Título ligeiramente maior */
+            font-weight: 600;
+            color: var(--text);
         }
-        .sidebar-title i { color: var(--c1); } /* Ícone roxo */
+
+        .sidebar-title svg {
+            fill: var(--primary);
+        }
 
         .category-list {
             list-style: none;
-            padding: 0;
-            margin: 0;
+            padding: 0; /* Remove padding padrão da ul */
         }
+
         .category-item {
+            padding: 0.9rem 1.5rem; /* Mais padding vertical */
             display: flex;
             align-items: center;
             gap: 0.8rem;
-            padding: 0.9rem 1.5rem;
-            color: var(--text-secondary);
-            border-bottom: 1px solid var(--bo);
             cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none; /* Remove sublinhado do link */
-        }
-        .category-item:last-child {
-            border-bottom: none;
-        }
-        .category-item:hover {
-            background: var(--c5);
-            color: var(--text-color);
-        }
-        .category-item.active {
-            background: var(--c5);
-            color: var(--c1); /* Cor ativa */
-            border-left: 3px solid var(--c1); /* Indicador ativo */
-            padding-left: calc(1.5rem - 3px); /* Compensa a borda */
-            font-weight: 500;
-        }
-        .category-icon {
-            font-size: 1.2rem; /* Tamanho do ícone */
-            width: 20px;
-            text-align: center;
-            color: var(--c1); /* Cor do ícone */
-        }
-        .category-item.active .category-icon {
-             color: var(--c1); /* Mantém roxo no ativo */
-        }
-
-
-        /* Products Grid Area */
-        .products-container {
-            background: var(--c4);
-            border: 1px solid var(--bo);
-            border-radius: var(--br);
-            overflow: hidden;
-        }
-        .products-header {
-            background: var(--c5);
-            padding: 1.2rem 1.5rem;
-            border-bottom: 1px solid var(--bo);
-        }
-        .products-title {
-            font-size: 1.1rem;
-            font-weight: 600;
-            color: var(--text-color);
-            margin: 0;
-        }
-
-        /* Grid de Produtos Customizado */
-        .products-grid-custom {
-            display: grid;
-            /* Cria colunas responsivas: min 280px, max 1fr */
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 1.5rem; /* Espaçamento entre cards */
-            padding: 1.5rem;
-        }
-
-        /* Card de Produto Customizado */
-        .product-card-custom {
-            background: var(--c3); /* Fundo um pouco mais escuro que o container */
-            border: 1px solid var(--bo);
-            border-radius: var(--br);
-            overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            text-decoration: none;
-            transition: transform 0.2s ease, box-shadow 0.2s ease;
-        }
-        .product-card-custom:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-        }
-        .product-image-custom {
-            width: 100%;
-            height: 180px; /* Altura fixa para a imagem */
-            background-color: var(--c5); /* Fundo para a imagem */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        .product-image-custom img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: cover; /* Ou 'contain' dependendo da imagem */
-        }
-        .product-content-custom {
-            padding: 1rem;
-            display: flex;
-            flex-direction: column;
-            flex-grow: 1; /* Faz o conteúdo crescer para preencher o card */
-        }
-        .product-title-custom {
-            font-size: 1rem;
-            font-weight: 600;
-            color: var(--text-color);
-            margin-bottom: 0.5rem;
-            flex-grow: 1; /* Empurra preço/botão para baixo */
-            /* Limita o título a 2 linhas (opcional) */
-            /* display: -webkit-box; */
-            /* -webkit-line-clamp: 2; */
-            /* -webkit-box-orient: vertical; */
-            /* overflow: hidden; */
-            /* text-overflow: ellipsis; */
-            min-height: 40px; /* Garante espaço mínimo para o título */
-        }
-        .product-price-custom {
-            font-size: 1.2rem;
-            font-weight: 700;
-            color: var(--c1); /* Preço em roxo */
-            margin-bottom: 1rem;
-        }
-        .product-button-custom {
-            background-color: var(--c1);
-            color: white;
-            text-align: center;
-            padding: 0.6rem 1rem;
-            border: none;
-            border-radius: var(--brm);
-            text-decoration: none;
-            transition: background-color 0.2s ease;
-            font-weight: 500;
-            width: 100%; /* Botão ocupa toda a largura */
-        }
-        .product-button-custom:hover {
-            background-color: var(--c2);
-            color: white;
-        }
-        .product-button-custom i {
-            margin-right: 0.5rem;
-        }
-
-        /* Responsividade do Layout Principal */
-        @media (max-width: 991.98px) {
-            .products-layout {
-                grid-template-columns: 1fr; /* Coluna única */
-            }
-            .sidebar {
-                position: static; /* Remove o sticky */
-                margin-bottom: 2rem; /* Espaço abaixo da sidebar */
-                top: auto;
-            }
-            .products-grid-custom {
-                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ajuste para telas médias */
-                 padding: 1rem;
-                 gap: 1rem;
-            }
-            .product-card-custom { min-height: auto; }
-            .product-image-custom { height: 160px; }
-            .product-title-custom { font-size: 0.95rem; min-height: 36px;}
-            .product-price-custom { font-size: 1.1rem; }
-        }
-
-         @media (max-width: 575.98px) {
-             .products-grid-custom {
-                 grid-template-columns: 1fr; /* Uma coluna em telas bem pequenas */
-             }
-             .product-image-custom { height: 200px; } /* Imagem maior em 1 coluna */
-         }
-
-
-        /* === Footer Simples === */
-        footer {
-            background-color: var(--c4);
-            border-top: 1px solid var(--bo);
-            padding: 2rem 1rem;
-            margin-top: 3rem;
-            text-align: center;
-            color: var(--text-secondary);
+            border-bottom: 1px solid var(--border);
+            transition: background-color 0.3s, border-left-color 0.3s; /* Transição suave */
+            color: var(--text-secondary); /* Cor padrão para itens não ativos */
             font-size: 0.9rem;
         }
-        footer a {
-            color: var(--c1);
-            text-decoration: none;
-        }
-        footer a:hover {
-            text-decoration: underline;
+
+        .category-item:last-child {
+             border-bottom: none; /* Remove a borda do último item */
         }
 
+        .category-item:hover {
+            background-color: var(--bg-darker);
+            color: var(--text); /* Muda cor do texto no hover */
+        }
+
+        .category-item.active {
+            background-color: var(--bg-darker);
+            border-left: 4px solid var(--primary); /* Borda esquerda mais grossa */
+            padding-left: calc(1.5rem - 4px); /* Ajusta padding para compensar a borda */
+            color: var(--text); /* Cor do texto ativo */
+            font-weight: 500; /* Leve destaque */
+        }
+
+        .category-icon { /* Estilo para os ícones da categoria */
+            width: 20px; /* Tamanho dos ícones */
+            height: 20px;
+            object-fit: contain;
+            flex-shrink: 0;
+            opacity: 0.7; /* Ícones um pouco mais sutis */
+        }
+        .category-item.active .category-icon,
+        .category-item:hover .category-icon {
+            opacity: 1; /* Ícones totalmente visíveis no item ativo/hover */
+        }
+
+        .category-name {
+            flex-grow: 1; /* Ocupa o espaço restante */
+        }
+
+        .category-count {
+            margin-left: auto; /* Empurra para a direita */
+            background-color: var(--bg-dark);
+            color: var(--primary);
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 500;
+        }
+
+        /* Área Principal de Produtos (dentro do main-content) */
+        .products-main-area {
+             /* Herda o fundo do body ou pode ter um fundo próprio se necessário */
+             /* A estrutura interna usará .section-header e .products-grid */
+        }
+
+        /* Footer */
+        .footer {
+            background-color: var(--bg-darker);
+            padding: 3rem 2rem 1.5rem;
+            border-top: 1px solid var(--border);
+            margin-top: 3rem; /* Espaço acima do rodapé */
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2.5rem; /* Maior espaçamento entre colunas */
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .footer-column {
+             /* Container para cada coluna do footer */
+        }
+
+        .footer-logo img {
+            height: 25px;
+            margin-bottom: 1rem;
+            opacity: 0.8; /* Logo um pouco mais sutil */
+        }
+
+        .footer-description { /* Descrição abaixo do logo */
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-title {
+            font-size: 1rem; /* Tamanho ajustado */
+            margin-bottom: 1.2rem; /* Espaçamento ajustado */
+            color: var(--text); /* Título mais visível */
+            font-weight: 600;
+        }
+
+        .footer-links {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 0.7rem; /* Espaçamento entre links */
+        }
+
+        .footer-links a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s, padding-left 0.3s; /* Adiciona transição de padding */
+            font-size: 0.9rem;
+            display: inline-block; /* Para padding funcionar */
+        }
+
+        .footer-links a:hover {
+            color: var(--primary);
+            padding-left: 5px; /* Efeito sutil de deslocamento */
+            text-decoration: underline; /* Sublinhado no hover */
+        }
+
+        .social-links { /* Para links de redes sociais */
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .social-links a {
+            color: var(--text-secondary);
+            font-size: 1.2rem; /* Ícones maiores */
+        }
+        .social-links a:hover {
+            color: var(--primary);
+        }
+
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem; /* Mais espaço antes da linha final */
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--border);
+            color: var(--text-secondary);
+            font-size: 0.85rem; /* Texto menor */
+        }
+
+        /* Responsividade */
+        @media (max-width: 1024px) {
+            .main-content {
+                grid-template-columns: 1fr; /* Empilha sidebar e conteúdo */
+            }
+            .sidebar {
+                position: static; /* Remove o sticky em telas menores */
+                margin-bottom: 1.5rem; /* Adiciona espaço abaixo da sidebar quando empilhada */
+            }
+            .navbar {
+                padding: 1rem; /* Reduz padding */
+            }
+            .hero-section, .products-section {
+                 margin: 1.5rem; /* Reduz margens */
+            }
+             .main-content {
+                 padding: 0 1rem 1rem; /* Reduz padding */
+                 margin-top: 1.5rem;
+             }
+             .footer {
+                 padding: 2rem 1rem 1rem;
+             }
+        }
+
+        @media (max-width: 768px) {
+            .navbar {
+                flex-direction: column;
+                gap: 1rem;
+                align-items: flex-start; /* Alinha itens à esquerda */
+            }
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: flex-start; /* Alinha links à esquerda */
+                gap: 1rem 1.5rem; /* Ajusta espaçamento */
+                margin-top: 0.5rem;
+            }
+            .nav-buttons {
+                width: 100%; /* Botões ocupam toda a largura */
+                justify-content: flex-end; /* Alinha botões à direita */
+                margin-top: 0.5rem;
+            }
+
+            .hero-title {
+                font-size: 2rem;
+            }
+            .hero-section {
+                padding: 3rem 1rem; /* Reduz padding */
+            }
+
+            .products-grid {
+                /* Mantém o auto-fill, mas pode ajustar minmax se necessário */
+                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+             .product-card {
+                 padding: 1rem; /* Reduz padding do card */
+             }
+
+            .footer-content {
+                 grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); /* Ajusta colunas do footer */
+                 gap: 2rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .navbar {
+                 padding: 1rem 0.8rem;
+            }
+            .nav-links {
+                 gap: 0.8rem 1rem;
+                 font-size: 0.9rem;
+            }
+             .nav-buttons .btn {
+                 padding: 0.4rem 0.8rem; /* Botões menores */
+                 font-size: 0.9rem;
+             }
+
+            .hero-title {
+                font-size: 1.8rem;
+            }
+            .hero-subtitle {
+                font-size: 1rem;
+            }
+             .hero-section {
+                 padding: 2.5rem 1rem;
+             }
+
+             .breadcrumbs {
+                 padding: 0.8rem 1rem;
+                 font-size: 0.8rem;
+             }
+
+            .products-grid {
+                /* Em telas muito pequenas, talvez forçar 1 coluna */
+                 grid-template-columns: 1fr;
+            }
+            .product-card {
+                 flex-direction: column; /* Empilha imagem e info */
+                 align-items: flex-start; /* Alinha ao início */
+                 gap: 0.8rem;
+            }
+             .product-image {
+                 width: 50px;
+                 height: 50px;
+             }
+             .product-info {
+                 width: 100%; /* Garante que a info ocupe a largura */
+             }
+
+             .main-content {
+                 padding: 0 0.8rem 1rem;
+                 margin-top: 1rem;
+                 gap: 1rem;
+             }
+             .sidebar {
+                 margin-bottom: 1rem;
+             }
+             .sidebar-header, .category-item {
+                 padding: 0.8rem 1rem;
+             }
+             .category-item.active {
+                 padding-left: calc(1rem - 4px);
+             }
+
+
+            .footer-content {
+                grid-template-columns: 1fr; /* Uma coluna no footer */
+                gap: 1.5rem;
+            }
+            .footer-column {
+                 text-align: center; /* Centraliza colunas do footer */
+            }
+             .footer-logo img {
+                 margin: 0 auto 1rem; /* Centraliza logo */
+                 display: block;
+             }
+             .footer-links {
+                 text-align: center;
+             }
+             .social-links {
+                 justify-content: center; /* Centraliza ícones sociais */
+             }
+             .footer-bottom {
+                 font-size: 0.8rem;
+                 margin-top: 2rem;
+                 padding-top: 1rem;
+             }
+        }
     </style>
 </head>
 <body>
-
-    <div class="mobile-menu-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1035; display: none; transition: opacity 0.3s ease;" onclick="toggleMobileMenu()"></div>
-
-    <header>
-        <div class="announcement-bar">
-            <div class="container-fluid">
-                🚀 Aproveite nossas ofertas de lançamento! <a href="#">Ver Promoções</a>
-            </div>
-        </div>
-
-        <nav class="navbarHome">
-            <a class="navbar-brand" href="#">
-                <img src="https://via.placeholder.com/150x40.png?text=Sua+Logo" alt="Logo Sua Loja">
-            </a>
-
-            <div class="navBtn d-none d-lg-flex"> <a href="#" class="btn newBtn active"><i class="bi bi-house-door-fill"></i> Início</a>
-                 <a href="#" class="btn newBtn"><i class="bi bi-journal-bookmark-fill"></i> Cursos</a>
-                 <a href="#" class="btn newBtn"><i class="bi bi-book-fill"></i> Ebooks</a>
-                 <a href="#" class="btn newBtn"><i class="bi bi-tools"></i> Ferramentas</a>
-            </div>
-
-             <div class="auth-actions d-none d-lg-block"> <button class="auth-btn" onclick="alert('Funcionalidade de Login não implementada neste template.')">
-                    <i class="bi bi-box-arrow-in-right"></i>
-                    <span>Login / Criar Conta</span>
-                </button>
-            </div>
-
-            <button class="menu-toggle d-lg-none" type="button" aria-label="Menu" onclick="toggleMobileMenu()"> <i class="bi bi-list"></i>
-            </button>
-        </nav>
-
-        <div class="mobile-menu" id="mobileMenu">
-            <div class="mobile-auth-container">
-                 <div class="mobile-auth-header">
-                     <img src="https://via.placeholder.com/150x40.png?text=Sua+Logo" alt="Logo" class="mobile-auth-logo">
-                     <button class="close-menu" aria-label="Fechar" onclick="toggleMobileMenu()">
-                         <i class="bi bi-x-lg"></i>
-                     </button>
-                 </div>
-
-                 <nav class="mobile-auth-nav">
-                     <a href="#" class="active"><i class="bi bi-house-door-fill"></i> Início</a>
-                     <a href="#"><i class="bi bi-journal-bookmark-fill"></i> Cursos</a>
-                     <a href="#"><i class="bi bi-book-fill"></i> Ebooks</a>
-                     <a href="#"><i class="bi bi-tools"></i> Ferramentas</a>
-                 </nav>
-
-                 <div class="mobile-auth-content">
-                     <h2 class="auth-title">Bem-vindo!</h2>
-                     <p class="auth-subtitle">Acesse sua conta para continuar</p>
-
-                     <div class="auth-options">
-                         <button class="auth-button login-button" onclick="alert('Funcionalidade de Login não implementada.')">
-                             <i class="bi bi-box-arrow-in-right"></i>
-                             <span>Entrar com Email</span>
-                         </button>
-                         <button class="auth-button register-button" onclick="alert('Funcionalidade de Registro não implementada.')">
-                             <i class="bi bi-person-plus-fill"></i>
-                             <span>Criar Nova Conta</span>
-                         </button>
-                     </div>
-                 </div>
-            </div>
-        </div>
-    </header>
-
-    <div class="breadcrumbs-container">
-        <div class="container">
-            <nav aria-label="breadcrumb">
-                <ol class="breadcrumb">
-                    <li class="breadcrumb-item"><a href="#"><i class="bi bi-house-door-fill"></i></a></li>
-                    <li class="breadcrumb-item active" aria-current="page">Produtos</li>
-                </ol>
-            </nav>
-        </div>
+    <div class="announcement-bar">
+        Nos siga no <a href="#">Instagram</a> para acompanhar as novidades e promoções.
     </div>
 
-    <main class="main-content">
-        <div class="container page-content">
+    <nav class="navbar">
+        <a href="#" class="navbar-brand">
+            <svg xmlns="http://www.w3.org/2000/svg" width="120" height="30" viewBox="0 0 120 30">
+                 <rect width="30" height="30" rx="4" fill="var(--primary)"/>
+                 <rect x="35" y="5" width="80" height="20" rx="4" fill="var(--primary)" fill-opacity="0.7"/>
+                 <text x="10" y="20" font-family="Segoe UI, sans-serif" font-size="14" fill="white" font-weight="bold">TS</text>
+             </svg>
+            </a>
 
-            <div class="hero-section-pr">
-                <h1 class="hero-title">Nossos Cursos e Produtos Digitais</h1>
-                <p class="hero-subtitle">
-                    Encontre o conhecimento e as ferramentas que você precisa para alcançar seus objetivos. Qualidade e conteúdo atualizado.
-                </p>
-                <a href="#" class="hero-cta" onclick="alert('Botão de Exemplo Clicado!')">
-                    <i class="bi bi-rocket-takeoff-fill"></i> Comece a Aprender Agora
-                </a>
+        <div class="nav-links">
+            <a href="#">Início</a>
+            <a href="#">Produtos</a>
+            <a href="#">Ferramentas</a>
+            <a href="#">Contato</a>
+        </div>
+
+        <div class="nav-buttons">
+            <a href="#" class="btn btn-outline">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6m2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0m4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4m-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332C2.84 11.014 2.688 11.754 2.686 12H12.314Z"/>
+                </svg>
+                Login
+            </a>
+            <a href="#" class="btn btn-primary">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                    <path d="M0 1.5A.5.5 0 0 1 .5 1H2a.5.5 0 0 1 .485.379L2.89 3H14.5a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 13 12H4a.5.5 0 0 1-.491-.408L2.01 3.607 1.61 2H.5a.5.5 0 0 1-.5-.5M3.615 11a1.5 1.5 0 0 0 0 3h5.77a1.5 1.5 0 0 0 0-3zM5 12.5a.5.5 0 0 1 .5-.5h5.77a.5.5 0 0 1 0 1H5.5a.5.5 0 0 1-.5-.5"/>
+                 </svg>
+                Carrinho
+            </a>
+        </div>
+    </nav>
+
+    <div class="breadcrumbs">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#">Início</a></li>
+            <li class="breadcrumb-item active">Produtos</li> </ol>
+    </div>
+
+    <div class="hero-section">
+        <h1 class="hero-title">Explore Nossos Produtos Digitais</h1>
+        <p class="hero-subtitle">Encontre contas, proxies, ferramentas e muito mais para impulsionar seus projetos.</p>
+        <a href="#all-products" class="btn btn-primary">Ver Todos os Produtos</a> </div>
+
+    <div class="products-section top-products">
+        <div class="section-header">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                 <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314"/>
+            </svg>
+            <h2 class="section-title">Mais Populares</h2>
+        </div>
+
+        <div class="products-grid">
+            <a href="#" class="product-card">
+                <div class="product-image">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--primary)"><path d="M21.9999 15L17 10L13 14L8.5 9.5L3.00004 15H21.9999ZM10 10.5C10.8284 10.5 11.5 9.82843 11.5 9C11.5 8.17157 10.8284 7.5 10 7.5C9.17161 7.5 8.5 8.17157 8.5 9C8.5 9.82843 9.17161 10.5 10 10.5ZM2.00004 3.9934C2.00004 3.44476 2.44579 3 3.00331 3H20.9967C21.5506 3 22 3.44771 22 3.9934V20.0066C22 20.5552 21.5542 21 20.9967 21H3.00331C2.44936 21 2.00004 20.5523 2.00004 20.0066V3.9934ZM4.00004 5V19H20V5H4.00004Z"></path></svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Proxy Residencial BR Premium</div>
+                    <div class="product-details">
+                        <span class="product-stock">220 disponíveis</span>
+                        <span class="product-sales">13,085 vendas</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="product-card">
+                <div class="product-image">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--primary)"><path d="M21.9999 15L17 10L13 14L8.5 9.5L3.00004 15H21.9999ZM10 10.5C10.8284 10.5 11.5 9.82843 11.5 9C11.5 8.17157 10.8284 7.5 10 7.5C9.17161 7.5 8.5 8.17157 8.5 9C8.5 9.82843 9.17161 10.5 10 10.5ZM2.00004 3.9934C2.00004 3.44476 2.44579 3 3.00331 3H20.9967C21.5506 3 22 3.44771 22 3.9934V20.0066C22 20.5552 21.5542 21 20.9967 21H3.00331C2.44936 21 2.00004 20.5523 2.00004 20.0066V3.9934ZM4.00004 5V19H20V5H4.00004Z"></path></svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Conta Business Manager Verificada</div>
+                    <div class="product-details">
+                        <span class="product-stock">1,775 disponíveis</span>
+                        <span class="product-sales">11,254 vendas</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="product-card">
+                <div class="product-image">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--primary)"><path d="M21.9999 15L17 10L13 14L8.5 9.5L3.00004 15H21.9999ZM10 10.5C10.8284 10.5 11.5 9.82843 11.5 9C11.5 8.17157 10.8284 7.5 10 7.5C9.17161 7.5 8.5 8.17157 8.5 9C8.5 9.82843 9.17161 10.5 10 10.5ZM2.00004 3.9934C2.00004 3.44476 2.44579 3 3.00331 3H20.9967C21.5506 3 22 3.44771 22 3.9934V20.0066C22 20.5552 21.5542 21 20.9967 21H3.00331C2.44936 21 2.00004 20.5523 2.00004 20.0066V3.9934ZM4.00004 5V19H20V5H4.00004Z"></path></svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Proxy Datacenter EUA Alta Velocidade</div>
+                    <div class="product-details">
+                        <span class="product-stock">182 disponíveis</span>
+                        <span class="product-sales">6,091 vendas</span>
+                    </div>
+                </div>
+            </a>
+
+            <a href="#" class="product-card">
+                <div class="product-image">
+                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--primary)"><path d="M21.9999 15L17 10L13 14L8.5 9.5L3.00004 15H21.9999ZM10 10.5C10.8284 10.5 11.5 9.82843 11.5 9C11.5 8.17157 10.8284 7.5 10 7.5C9.17161 7.5 8.5 8.17157 8.5 9C8.5 9.82843 9.17161 10.5 10 10.5ZM2.00004 3.9934C2.00004 3.44476 2.44579 3 3.00331 3H20.9967C21.5506 3 22 3.44771 22 3.9934V20.0066C22 20.5552 21.5542 21 20.9967 21H3.00331C2.44936 21 2.00004 20.5523 2.00004 20.0066V3.9934ZM4.00004 5V19H20V5H4.00004Z"></path></svg>
+                </div>
+                <div class="product-info">
+                    <div class="product-title">Conta Google ADS Aquecida (R$500 Limite)</div>
+                    <div class="product-details">
+                        <span class="product-stock">298 disponíveis</span>
+                        <span class="product-sales">3,228 vendas</span>
+                    </div>
+                </div>
+            </a>
+            </div>
+    </div>
+
+    <div class="main-content" id="all-products">
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <h2 class="sidebar-title">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5zM2.5 2a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zM1 10.5A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zm6.5.5A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5zm-6.5-7A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5zm1.5-.5a.5.5 0 0 0-.5.5v3a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5v-3a.5.5 0 0 0-.5-.5z"/>
+                    </svg>
+                    Categorias
+                </h2>
             </div>
 
-            <div class="products-layout">
+            <ul class="category-list">
+                <li class="category-item active"> <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M3 4H21V6H3V4ZM3 11H21V13H3V11ZM3 18H21V20H3V18Z"></path></svg>
+                    <span class="category-name">Ver Todos</span>
+                    <span class="category-count">33</span>
+                </li>
 
-                <aside class="sidebar">
-                    <div class="sidebar-header">
-                        <h3 class="sidebar-title"><i class="bi bi-filter-left"></i> Categorias</h3>
+                <li class="category-item">
+                    <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 14V22H4C4 17.5817 7.58172 14 12 14ZM12 13C8.68629 13 6 10.3137 6 7C6 3.68629 8.68629 1 12 1C15.3137 1 18 3.68629 18 7C18 10.3137 15.3137 13 12 13ZM18.8463 14.2726C19.1695 14.0687 19.5776 14 20 14H22V22H20C20 17.8858 17.321 14.628 13.333 14.071C15.343 14.8908 17.0318 15.9307 18.286 17.1154C18.7194 16.1705 18.9505 15.1645 18.8463 14.2726Z"></path></svg>
+                    <span class="category-name">Contas (BM, ADS)</span>
+                    <span class="category-count">12</span>
+                </li>
+
+                <li class="category-item">
+                    <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22ZM11 11V5H13V11H11ZM11 13H13V15H11V13ZM8 11H10V13H8V11ZM14 11H16V13H14V11Z"></path></svg>
+                    <span class="category-name">Proxies (Residencial, DC)</span>
+                    <span class="category-count">8</span>
+                </li>
+
+                <li class="category-item">
+                    <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M14.1213 1.70711L19.4645 7.05025C19.8544 7.44016 19.9303 8.01474 19.6552 8.4937L13.7052 18.4937C13.4301 18.9727 12.8549 19.1454 12.3759 18.8703L10.5729 17.8703C10.2103 17.6652 10 17.2608 10 16.829V7.17096C10 6.73915 10.2103 6.3348 10.5729 6.1297L12.3759 5.1297C12.8549 4.85462 13.4301 5.02733 13.7052 5.5063L14.5 7L16.5 3L14.1213 1.70711ZM12 10.3414L15.2929 13.6343L16.7071 12.2201L12 7.51302L7.29289 12.2201L8.70711 13.6343L12 10.3414Z"></path></svg>
+                    <span class="category-name">Ferramentas</span>
+                    <span class="category-count">5</span>
+                </li>
+
+                <li class="category-item">
+                     <svg class="category-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M19.997 12C19.728 11.9999 19.479 11.9085 19.292 11.7375L16.706 9.40351C16.418 9.14351 16.251 8.76151 16.25 8.36251V6.74951C16.25 5.94951 15.6 5.29951 14.8 5.29951H9.2C8.4 5.29951 7.75 5.94951 7.75 6.74951V8.36251C7.749 8.76151 7.582 9.14351 7.294 9.40351L4.708 11.7375C4.439 11.9765 4.041 12.0615 3.684 11.9555C3.327 11.8495 3.049 11.5665 2.942 11.2095C2.836 10.8525 2.921 10.4555 3.16 10.1865L5.747 7.85251C6.127 7.50551 6.344 7.02551 6.344 6.52551V5.19951C6.344 3.75851 7.502 2.59951 8.943 2.59951H15.057C16.498 2.59951 17.656 3.75851 17.656 5.19951V6.52551C17.656 7.02551 17.873 7.50551 18.253 7.85251L20.84 10.1865C21.079 10.4555 21.164 10.8525 21.058 11.2095C20.952 11.5665 20.674 11.8495 20.317 11.9555C20.21 11.9855 20.101 11.999 19.992 12H19.997Z M12 13C13.1046 13 14 13.8954 14 15V19C14 20.1046 13.1046 21 12 21C10.8954 21 10 20.1046 10 19V15C10 13.8954 10.8954 13 12 13Z"></path></svg>
+                    <span class="category-name">Serviços</span>
+                    <span class="category-count">8</span>
+                </li>
+            </ul>
+        </aside>
+
+        <main class="products-main-area">
+            <div class="products-section all-products"> <div class="section-header">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16">
+                        <path d="M6 .5a.5.5 0 0 1 .5.5v14a.5.5 0 0 1-.5.5H.5a.5.5 0 0 1-.5-.5v-14A.5.5 0 0 1 .5.5zM16 .5a.5.5 0 0 1 .5.5v14a.5.5 0 0 1-.5.5H10a.5.5 0 0 1-.5-.5v-14a.5.5 0 0 1 .5-.5z"/>
+                     </svg>
+                    <h2 class="section-title">Todos os Produtos</h2>
                     </div>
-                    <ul class="category-list">
-                        <li><a href="#" class="category-item active"> <i class="bi bi-star-fill category-icon"></i> Todos os Produtos</a></li>
-                        <li><a href="#" class="category-item"> <i class="bi bi-camera-reels-fill category-icon"></i> Cursos Online</a></li>
-                        <li><a href="#" class="category-item"> <i class="bi bi-book-half category-icon"></i> Ebooks e Guias</a></li>
-                        <li><a href="#" class="category-item"> <i class="bi bi-tools category-icon"></i> Ferramentas Digitais</a></li>
-                        <li><a href="#" class="category-item"> <i class="bi bi-palette-fill category-icon"></i> Templates e Recursos</a></li>
-                        <li><a href="#" class="category-item"> <i class="bi bi-graph-up-arrow category-icon"></i> Marketing e Vendas</a></li>
-                    </ul>
-                </aside>
 
-                <section class="products-container">
-                    <div class="products-header">
-                        <h2 class="products-title">Todos os Produtos</h2>
-                        </div>
+                <div class="products-grid">
+                    <a href="#" class="product-card">
+                         <div class="product-image">
+                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--primary)"><path d="M21.9999 15L17 10L13 14L8.5 9.5L3.00004 15H21.9999ZM10 10.5C10.8284 10.5 11.5 9.82843 11.5 9C11.5 8.17157 10.8284 7.5 10 7.5C9.17161 7.5 8.5 8.17157 8.5 9C8.5 9.82843 9.17161 10.5 10 10.5ZM2.00004 3.9934C2.00004 3.44476 2.44579 3 3.00331 3H20.9967C21.5506 3 22 3.44771 22 3.9934V20.0066C22 20.5552 21.5542 21 20.9967 21H3.00331C2.44936 21 2.00004 20.5523 2.00004 20.0066V3.9934ZM4.00004 5V19H20V5H4.00004Z"></path></svg>
+                         </div>
+                         <div class="product-info">
+                             <div class="product-title">Proxy Residencial BR Premium</div>
+                             <div class="product-details">
+                                 <span class="product-stock">220 disponíveis</span>
+                                 <span class="product-sales">13,085 vendas</span>
+                             </div>
+                         </div>
+                    </a>
+                     <a href="#" class="product-card">
+                         <div class="product-image">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--primary)"><path d="M21.9999 15L17 10L13 14L8.5 9.5L3.00004 15H21.9999ZM10 10.5C10.8284 10.5 11.5 9.82843 11.5 9C11.5 8.17157 10.8284 7.5 10 7.5C9.17161 7.5 8.5 8.17157 8.5 9C8.5 9.82843 9.17161 10.5 10 10.5ZM2.00004 3.9934C2.00004 3.44476 2.44579 3 3.00331 3H20.9967C21.5506 3 22 3.44771 22 3.9934V20.0066C22 20.5552 21.5542 21 20.9967 21H3.00331C2.44936 21 2.00004 20.5523 2.00004 20.0066V3.9934ZM4.00004 5V19H20V5H4.00004Z"></path></svg>
+                         </div>
+                         <div class="product-info">
+                             <div class="product-title">Conta Business Manager Verificada</div>
+                             <div class="product-details">
+                                 <span class="product-stock">1,775 disponíveis</span>
+                                 <span class="product-sales">11,254 vendas</span>
+                             </div>
+                         </div>
+                     </a>
+                     <a href="#" class="product-card">
+                         <div class="product-image">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--primary)"><path d="M21.9999 15L17 10L13 14L8.5 9.5L3.00004 15H21.9999ZM10 10.5C10.8284 10.5 11.5 9.82843 11.5 9C11.5 8.17157 10.8284 7.5 10 7.5C9.17161 7.5 8.5 8.17157 8.5 9C8.5 9.82843 9.17161 10.5 10 10.5ZM2.00004 3.9934C2.00004 3.44476 2.44579 3 3.00331 3H20.9967C21.5506 3 22 3.44771 22 3.9934V20.0066C22 20.5552 21.5542 21 20.9967 21H3.00331C2.44936 21 2.00004 20.5523 2.00004 20.0066V3.9934ZM4.00004 5V19H20V5H4.00004Z"></path></svg>
+                         </div>
+                         <div class="product-info">
+                             <div class="product-title">Proxy Datacenter EUA Alta Velocidade</div>
+                             <div class="product-details">
+                                 <span class="product-stock">182 disponíveis</span>
+                                 <span class="product-sales">6,091 vendas</span>
+                             </div>
+                         </div>
+                     </a>
+                    <a href="#" class="product-card">
+                         <div class="product-image">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--primary)"><path d="M21.9999 15L17 10L13 14L8.5 9.5L3.00004 15H21.9999ZM10 10.5C10.8284 10.5 11.5 9.82843 11.5 9C11.5 8.17157 10.8284 7.5 10 7.5C9.17161 7.5 8.5 8.17157 8.5 9C8.5 9.82843 9.17161 10.5 10 10.5ZM2.00004 3.9934C2.00004 3.44476 2.44579 3 3.00331 3H20.9967C21.5506 3 22 3.44771 22 3.9934V20.0066C22 20.5552 21.5542 21 20.9967 21H3.00331C2.44936 21 2.00004 20.5523 2.00004 20.0066V3.9934ZM4.00004 5V19H20V5H4.00004Z"></path></svg>
+                         </div>
+                         <div class="product-info">
+                             <div class="product-title">Conta Google ADS Aquecida (R$500 Limite)</div>
+                             <div class="product-details">
+                                 <span class="product-stock">298 disponíveis</span>
+                                 <span class="product-sales">3,228 vendas</span>
+                             </div>
+                         </div>
+                    </a>
+                    <a href="#" class="product-card">
+                         <div class="product-image">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--primary)"><path d="M21.9999 15L17 10L13 14L8.5 9.5L3.00004 15H21.9999ZM10 10.5C10.8284 10.5 11.5 9.82843 11.5 9C11.5 8.17157 10.8284 7.5 10 7.5C9.17161 7.5 8.5 8.17157 8.5 9C8.5 9.82843 9.17161 10.5 10 10.5ZM2.00004 3.9934C2.00004 3.44476 2.44579 3 3.00331 3H20.9967C21.5506 3 22 3.44771 22 3.9934V20.0066C22 20.5552 21.5542 21 20.9967 21H3.00331C2.44936 21 2.00004 20.5523 2.00004 20.0066V3.9934ZM4.00004 5V19H20V5H4.00004Z"></path></svg>
+                         </div>
+                         <div class="product-info">
+                             <div class="product-title">Script de Automação Instagram</div>
+                             <div class="product-details">
+                                 <span class="product-stock">45 disponíveis</span>
+                                 <span class="product-sales">1,570 vendas</span>
+                             </div>
+                         </div>
+                    </a>
+                    <a href="#" class="product-card">
+                         <div class="product-image">
+                              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="var(--primary)"><path d="M21.9999 15L17 10L13 14L8.5 9.5L3.00004 15H21.9999ZM10 10.5C10.8284 10.5 11.5 9.82843 11.5 9C11.5 8.17157 10.8284 7.5 10 7.5C9.17161 7.5 8.5 8.17157 8.5 9C8.5 9.82843 9.17161 10.5 10 10.5ZM2.00004 3.9934C2.00004 3.44476 2.44579 3 3.00331 3H20.9967C21.5506 3 22 3.44771 22 3.9934V20.0066C22 20.5552 21.5542 21 20.9967 21H3.00331C2.44936 21 2.00004 20.5523 2.00004 20.0066V3.9934ZM4.00004 5V19H20V5H4.00004Z"></path></svg>
+                         </div>
+                         <div class="product-info">
+                             <div class="product-title">Serviço de Criação de Logo</div>
+                             <div class="product-details">
+                                 <span class="product-stock">Disponível</span>
+                                 <span class="product-sales">890 vendas</span>
+                             </div>
+                         </div>
+                    </a>
+                     </div>
+            </div>
+        </main>
+    </div> <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                 <div class="footer-logo">
+                     <svg xmlns="http://www.w3.org/2000/svg" width="120" height="30" viewBox="0 0 120 30">
+                         <rect width="30" height="30" rx="4" fill="var(--primary)"/>
+                         <rect x="35" y="5" width="80" height="20" rx="4" fill="var(--primary)" fill-opacity="0.7"/>
+                          <text x="10" y="20" font-family="Segoe UI, sans-serif" font-size="14" fill="white" font-weight="bold">TS</text>
+                     </svg>
+                     </div>
+                 <p class="footer-description">
+                     Sua loja confiável para produtos e serviços digitais de alta qualidade.
+                 </p>
+                 <div class="social-links">
+                     <a href="#" title="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.231 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92m-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217m0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334"/></svg></a>
+                     <a href="#" title="Whatsapp"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" viewBox="0 0 16 16"><path d="M13.601 2.326A7.854 7.854 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.933 7.933 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.898 7.898 0 0 0 13.6 2.326zM7.994 14.521a6.573 6.573 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.557 6.557 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592zm3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.1-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34-.114-.007-.247-.007-.38-.007a.729.729 0 0 0-.529.247c-.182.198-.691.677-.691 1.654 0 .977.71 1.916.81 2.049.098.133 1.394 2.132 3.383 2.992.47.205.84.326 1.129.418.475.152.904.129 1.246.08.38-.058 1.171-.48 1.338-.943.164-.464.164-.86.114-.943-.049-.084-.182-.133-.38-.232z"/></svg></a>
+                     </div>
+            </div>
 
-                    <div class="products-grid-custom">
+            <div class="footer-column">
+                <h3 class="footer-title">Navegação</h3>
+                <ul class="footer-links">
+                    <li><a href="#">Início</a></li>
+                    <li><a href="#">Todos os Produtos</a></li>
+                    <li><a href="#">Ferramentas</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </div>
 
-                        <div class="product-card-custom">
-                            <div class="product-image-custom">
-                                <img src="https://placehold.co/600x400/8a4ecf/FFFFFF/png?text=Curso+Marketing" alt="Nome do Curso 1">
-                            </div>
-                            <div class="product-content-custom">
-                                <h3 class="product-title-custom">Curso Completo de Marketing Digital para Iniciantes</h3>
-                                <p class="product-price-custom">R$ 197,00</p>
-                                <a href="#" class="product-button-custom" onclick="alert('Botão Comprar Clicado!')">
-                                    <i class="bi bi-cart-plus-fill"></i> Comprar Agora
-                                </a>
-                            </div>
-                        </div>
+            <div class="footer-column">
+                 <h3 class="footer-title">Categorias Populares</h3>
+                 <ul class="footer-links">
+                     <li><a href="#">Contas Business Manager</a></li>
+                     <li><a href="#">Proxies Residenciais BR</a></li>
+                     <li><a href="#">Contas Google ADS</a></li>
+                     <li><a href="#">Scripts e Automações</a></li>
+                     <li><a href="#">Serviços de Design</a></li>
+                 </ul>
+            </div>
 
-                        <div class="product-card-custom">
-                            <div class="product-image-custom">
-                                <img src="https://placehold.co/600x400/2a2c33/FFFFFF/png?text=Ebook+Finanças" alt="Nome do Ebook 1">
-                            </div>
-                            <div class="product-content-custom">
-                                <h3 class="product-title-custom">Ebook: Organização Financeira Pessoal Descomplicada</h3>
-                                <p class="product-price-custom">R$ 49,90</p>
-                                <a href="#" class="product-button-custom" onclick="alert('Botão Comprar Clicado!')">
-                                     <i class="bi bi-cart-plus-fill"></i> Comprar Agora
-                                </a>
-                            </div>
-                        </div>
+            <div class="footer-column">
+                 <h3 class="footer-title">Suporte</h3>
+                 <ul class="footer-links">
+                     <li><a href="#">Central de Ajuda</a></li>
+                     <li><a href="#">Termos de Serviço</a></li>
+                     <li><a href="#">Política de Privacidade</a></li>
+                     <li><a href="#">Política de Reembolso</a></li>
+                     <li><a href="#">Abrir Ticket</a></li>
+                 </ul>
+            </div>
+        </div>
 
-                        <div class="product-card-custom">
-                            <div class="product-image-custom">
-                                <img src="https://placehold.co/600x400/363942/FFFFFF/png?text=Ferramenta+SEO" alt="Nome da Ferramenta 1">
-                            </div>
-                            <div class="product-content-custom">
-                                <h3 class="product-title-custom">Ferramenta de Análise de Palavras-chave (Assinatura Mensal)</h3>
-                                <p class="product-price-custom">R$ 79,00 /mês</p>
-                                <a href="#" class="product-button-custom" onclick="alert('Botão Comprar Clicado!')">
-                                     <i class="bi bi-cart-plus-fill"></i> Assinar Agora
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="product-card-custom">
-                            <div class="product-image-custom">
-                                <img src="https://placehold.co/600x400/8a4ecf/FFFFFF/png?text=Curso+Design" alt="Nome do Curso 2">
-                            </div>
-                            <div class="product-content-custom">
-                                <h3 class="product-title-custom">Curso de Design Gráfico Essencial com Figma</h3>
-                                <p class="product-price-custom">R$ 247,00</p>
-                                <a href="#" class="product-button-custom" onclick="alert('Botão Comprar Clicado!')">
-                                     <i class="bi bi-cart-plus-fill"></i> Comprar Agora
-                                </a>
-                            </div>
-                        </div>
-
-                         <div class="product-card-custom">
-                            <div class="product-image-custom">
-                                <img src="https://placehold.co/600x400/2a2c33/FFFFFF/png?text=Template+Site" alt="Nome do Template 1">
-                            </div>
-                            <div class="product-content-custom">
-                                <h3 class="product-title-custom">Pack de Templates Premium para Landing Pages</h3>
-                                <p class="product-price-custom">R$ 97,00</p>
-                                <a href="#" class="product-button-custom" onclick="alert('Botão Comprar Clicado!')">
-                                     <i class="bi bi-cart-plus-fill"></i> Comprar Agora
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="product-card-custom">
-                            <div class="product-image-custom">
-                                <img src="https://placehold.co/600x400/363942/FFFFFF/png?text=Guia+Copy" alt="Nome do Guia 1">
-                            </div>
-                            <div class="product-content-custom">
-                                <h3 class="product-title-custom">Guia Definitivo de Copywriting para Vendas Online</h3>
-                                <p class="product-price-custom">R$ 69,90</p>
-                                <a href="#" class="product-button-custom" onclick="alert('Botão Comprar Clicado!')">
-                                     <i class="bi bi-cart-plus-fill"></i> Comprar Agora
-                                </a>
-                            </div>
-                        </div>
-
-                        </div>
-                </section>
-
-            </div> </div> </main>
-
-    <footer>
-        <div class="container">
-            <p>&copy; 2024 Sua Loja de Cursos. Todos os direitos reservados.</p>
-            <p>
-                <a href="#">Termos de Uso</a> | <a href="#">Política de Privacidade</a> | <a href="#">Contato</a>
-            </p>
+        <div class="footer-bottom">
+             &copy; 2024 TechStore. Todos os direitos reservados.
         </div>
     </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-
-    <script>
-        // Script para controlar o header ao rolar (adaptado de Axtron)
-        window.addEventListener('scroll', function() {
-            const header = document.querySelector('header');
-            const body = document.body;
-            const headerHeight = header.offsetHeight; // Pega a altura dinâmica
-
-            if (window.scrollY > 150) { // Mostra o efeito após rolar um pouco
-                header.classList.add('onScroll');
-                // Ajusta o padding do body para compensar o header fixo APENAS se ele for fixo/sticky
-                // Neste exemplo, ele é sticky, então o padding-top pode não ser necessário ou precisar de ajuste
-                // body.style.paddingTop = headerHeight + 'px';
-            } else {
-                header.classList.remove('onScroll');
-                // body.style.paddingTop = '0px';
-            }
-        });
-
-        // Script para controlar o menu mobile
-        const mobileMenu = document.getElementById('mobileMenu');
-        const overlay = document.querySelector('.mobile-menu-overlay');
-
-        function toggleMobileMenu() {
-            const isOpen = mobileMenu.classList.contains('open');
-            if (isOpen) {
-                mobileMenu.classList.remove('open');
-                overlay.style.display = 'none';
-                overlay.style.opacity = '0';
-                document.body.style.overflow = ''; // Permite scroll no body
-            } else {
-                mobileMenu.classList.add('open');
-                overlay.style.display = 'block';
-                // Pequeno delay para a transição de opacidade funcionar
-                setTimeout(() => {
-                    overlay.style.opacity = '1';
-                }, 10);
-                document.body.style.overflow = 'hidden'; // Impede scroll no body
-            }
-        }
-
-        // Opcional: Fechar menu se clicar em um link (bom para SPAs, mas útil aqui também)
-        document.querySelectorAll('.mobile-auth-nav a').forEach(link => {
-            link.addEventListener('click', () => {
-                if (mobileMenu.classList.contains('open')) {
-                    toggleMobileMenu();
-                }
-            });
-        });
-
-    </script>
 
 </body>
 </html>
