@@ -1,723 +1,907 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NeonTech Futuro</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5, shrink-to-fit=no">
+    <meta name="theme-color" content="#222429"> <meta name="description" content="Explore nossos cursos e produtos digitais.">
+    <meta property="og:description" name="description" content="Explore nossos cursos e produtos digitais.">
+    <meta name="keywords" content="cursos online, ebooks, produtos digitais, aprendizado">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Sua Loja de Cursos - Produtos">
+    <meta property="og:description" content="Explore nossos cursos e produtos digitais.">
+    <meta property="og:image" content="https://via.placeholder.com/300x100.png?text=Sua+Logo">
+    <meta property="og:url" content="#">
+
+    <link rel="shortcut icon" type="image/png" href="https://via.placeholder.com/32x32.png?text=Fav">
+    <title>Sua Loja de Cursos - Produtos</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+
     <style>
-        /* Importação da fonte Orbitron para estilo tech */
-        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&display=swap');
-        
-        /* Reset e variáveis CSS */
+        /* === Variáveis de Cores (Inspiradas em Axtron) === */
         :root {
-            --neon-cyan: #00ffff;
-            --neon-magenta: #ff00ff;
-            --deep-black: #0a0a0f;
-            --glass-white: rgba(255, 255, 255, 0.1);
-            --rx: 0deg;
-            --ry: 0deg;
+            --c1: #8a4ecf; /* Roxo principal */
+            --c2: #6f3db4; /* Roxo mais escuro (hover) */
+            --c3: #1e1f24; /* Fundo principal escuro */
+            --c4: #2a2c33; /* Fundo secundário (cards, sidebar) */
+            --c5: #363942; /* Fundo sutil (headers internos, hover) */
+            --bo: rgba(255, 255, 255, 0.1); /* Cor da borda */
+            --text-color: #f0f0f0; /* Cor do texto principal */
+            --text-secondary: #a0a0a0; /* Cor do texto secundário */
+            --br: 8px; /* Border radius */
+            --brm: 6px; /* Border radius menor */
         }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
+
         body {
-            font-family: 'Orbitron', sans-serif;
-            background-color: var(--deep-black);
+            background-color: var(--c3);
+            color: var(--text-color);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; /* Fonte genérica */
+            padding-top: 0; /* Reset padding initially */
+            transition: padding-top 0.3s ease-in-out;
+        }
+
+        /* === Estilos do Header (Inspirados em Axtron) === */
+        .announcement-bar {
+            background-color: var(--c1);
             color: white;
-            min-height: 100vh;
-            perspective: 1000px;
-            overflow-x: hidden;
-            transform-style: preserve-3d;
+            padding: 8px 15px;
+            text-align: center;
+            font-size: 14px;
         }
-        
-        /* Efeito de fundo holográfico animado */
-        body::before {
-            content: '';
-            position: fixed;
+        .announcement-bar a {
+            color: white;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        .announcement-bar a:hover {
+            text-decoration: underline;
+        }
+        .announcement-bar i {
+            vertical-align: middle;
+        }
+
+        header {
+            position: sticky;
             top: 0;
             left: 0;
             width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(0, 255, 255, 0.15) 0%, transparent 40%),
-                radial-gradient(circle at 80% 70%, rgba(255, 0, 255, 0.15) 0%, transparent 40%);
-            animation: hologram 15s infinite alternate;
-            z-index: -1;
+            z-index: 1030; /* Acima do conteúdo */
+            background-color: var(--c4); /* Fundo do header */
+            border-bottom: 1px solid var(--bo);
+            transition: all 0.3s ease-in-out;
         }
-        
-        @keyframes hologram {
-            0%, 100% {
-                opacity: 0.8;
-                transform: translateY(0) rotate(0deg);
-            }
-            25% {
-                opacity: 0.6;
-                transform: translateY(-20px) rotate(1deg);
-            }
-            50% {
-                opacity: 0.9;
-                transform: translateY(10px) rotate(-1deg);
-            }
-            75% {
-                opacity: 0.7;
-                transform: translateY(-10px) rotate(0.5deg);
-            }
+
+        header.onScroll {
+             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+             /* background-color: rgba(30, 31, 36, 0.9); /* Fundo com leve transparência */
+             /* backdrop-filter: blur(5px); */
         }
-        
-        /* Navbar futurista com glassmorphism */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            padding: 1.5rem 5%;
+
+        .navbarHome {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            backdrop-filter: blur(10px);
-            background-color: rgba(10, 10, 15, 0.7);
-            border-bottom: 1px solid var(--glass-white);
-            z-index: 1000;
-            transform-style: preserve-3d;
+            padding: 0.8rem 1.5rem; /* Ajuste de padding */
+            flex-wrap: wrap; /* Permite quebrar linha em telas menores */
         }
-        
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3), 0 0 20px rgba(255, 0, 255, 0.3);
+
+        .navbar-brand img {
+            height: 40px; /* Ajuste a altura da sua logo */
+            vertical-align: middle;
+        }
+
+        .navBtn .newBtn {
+            color: var(--text-secondary);
+            background-color: transparent;
+            border: 1px solid var(--bo);
+            padding: 0.5rem 1rem;
+            margin-right: 0.5rem;
             transition: all 0.3s ease;
+            font-size: 0.9rem;
+            border-radius: var(--brm);
         }
-        
-        .logo:hover {
-            text-shadow: 0 0 15px rgba(0, 255, 255, 0.5), 0 0 30px rgba(255, 0, 255, 0.5);
+        .navBtn .newBtn i {
+            margin-right: 0.4rem;
+            font-size: 1rem;
         }
-        
-        .nav-links {
-            display: flex;
-            gap: 2rem;
+
+        .navBtn .newBtn:hover, .navBtn .newBtn.active {
+            background-color: var(--c5);
+            color: var(--text-color);
+            border-color: var(--c1);
         }
-        
-        .nav-links a {
+
+        .auth-actions .auth-btn {
+            background-color: var(--c1);
             color: white;
-            text-decoration: none;
-            font-weight: 500;
-            position: relative;
-            padding: 0.5rem 0;
-            transition: all 0.3s ease;
-        }
-        
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
-            transition: width 0.3s ease;
-        }
-        
-        .nav-links a:hover::after {
-            width: 100%;
-        }
-        
-        .nav-links a:hover {
-            text-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-magenta);
-        }
-        
-        /* Seção Hero com efeito 3D e neon */
-        .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 5%;
-            position: relative;
-            transform-style: preserve-3d;
-            transform: rotateX(var(--rx)) rotateY(var(--ry));
-            transition: transform 0.5s ease-out;
-        }
-        
-        .hero h1 {
-            font-size: 4.5rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3), 0 0 20px rgba(255, 0, 255, 0.3);
-            animation: glow 3s infinite alternate;
-        }
-        
-        @keyframes glow {
-            from {
-                text-shadow: 0 0 10px rgba(0, 255, 255, 0.3), 0 0 20px rgba(255, 0, 255, 0.3);
-            }
-            to {
-                text-shadow: 0 0 15px rgba(0, 255, 255, 0.5), 0 0 30px rgba(255, 0, 255, 0.5), 0 0 45px rgba(255, 0, 255, 0.2);
-            }
-        }
-        
-        .hero p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin-bottom: 3rem;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        /* Botão neon com efeito pulsante */
-        .btn-neon {
-            position: relative;
-            display: inline-block;
-            padding: 1rem 2.5rem;
-            background: transparent;
-            color: var(--neon-cyan);
-            border: 2px solid var(--neon-cyan);
-            border-radius: 50px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+            border: none;
+            padding: 0.6rem 1.2rem;
+            border-radius: var(--brm);
             cursor: pointer;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            z-index: 1;
-            box-shadow: 0 0 10px rgba(0, 255, 255, 0.3), 0 0 20px rgba(0, 255, 255, 0.2);
-        }
-        
-        .btn-neon:hover {
-            color: var(--deep-black);
-            box-shadow: 0 0 15px var(--neon-cyan), 0 0 30px var(--neon-cyan);
-        }
-        
-        .btn-neon::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
-            z-index: -1;
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.5s ease;
-            border-radius: 50px;
-        }
-        
-        .btn-neon:hover::before {
-            transform: scaleX(1);
-        }
-        
-        .btn-neon::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            left: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, transparent 70%);
-            opacity: 0;
-            transition: opacity 0.5s ease;
-            animation: pulse 2s infinite;
-        }
-        
-        @keyframes pulse {
-            0% {
-                transform: scale(0.8);
-                opacity: 0;
-            }
-            50% {
-                opacity: 0.2;
-            }
-            100% {
-                transform: scale(1.2);
-                opacity: 0;
-            }
-        }
-        
-        .btn-neon:hover::after {
-            opacity: 0.2;
-        }
-        
-        /* Seção de destaque tecnológica com glassmorphism */
-        .tech-highlight {
-            padding: 8rem 5%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            transform-style: preserve-3d;
-        }
-        
-        .tech-card {
-            position: relative;
-            width: 100%;
-            max-width: 900px;
-            padding: 3rem;
-            backdrop-filter: blur(10px);
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.2);
-            overflow: hidden;
-            transform-style: preserve-3d;
-            transform: rotateX(var(--rx)) rotateY(var(--ry));
-            transition: transform 0.5s ease-out;
-        }
-        
-        .tech-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(45deg, transparent, rgba(0, 255, 255, 0.1), transparent);
-            transform: translateX(-100%);
-            transition: transform 0.6s ease;
-        }
-        
-        .tech-card:hover::before {
-            transform: translateX(100%);
-        }
-        
-        .tech-card h2 {
-            font-size: 2.5rem;
-            margin-bottom: 1.5rem;
-            color: white;
-            position: relative;
-            display: inline-block;
-        }
-        
-        .tech-card h2::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 100%;
-            height: 3px;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
-        }
-        
-        .tech-card p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            color: rgba(255, 255, 255, 0.8);
-            margin-bottom: 2rem;
-        }
-        
-        /* Seção de serviços com grid responsivo */
-        .services {
-            padding: 8rem 5%;
-            min-height: 100vh;
-            transform-style: preserve-3d;
-        }
-        
-        .section-title {
-            text-align: center;
-            font-size: 3rem;
-            margin-bottom: 5rem;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3), 0 0 20px rgba(255, 0, 255, 0.3);
-        }
-        
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            perspective: 1000px;
-        }
-        
-        .service-card {
-            position: relative;
-            padding: 2.5rem;
-            background: rgba(10, 10, 15, 0.7);
-            border-radius: 15px;
-            border: 1px solid rgba(0, 255, 255, 0.1);
-            transition: all 0.5s ease;
-            transform-style: preserve-3d;
-            transform: rotateX(var(--rx)) rotateY(var(--ry));
-            transition: transform 0.5s ease-out;
-            overflow: hidden;
-        }
-        
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--neon-cyan), var(--neon-magenta));
-            z-index: -1;
-            border-radius: 16px;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-        
-        .service-card:hover::before {
-            opacity: 1;
-        }
-        
-        .service-card:hover {
-            transform: translateY(-10px) rotateX(var(--rx)) rotateY(var(--ry));
-            box-shadow: 0 20px 40px rgba(0, 255, 255, 0.1), 0 10px 30px rgba(255, 0, 255, 0.1);
-        }
-        
-        .service-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-        }
-        
-        .service-card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            color: white;
-        }
-        
-        .service-card p {
-            color: rgba(255, 255, 255, 0.7);
-            line-height: 1.6;
-        }
-        
-        /* Seção de contato */
-        .contact {
-            padding: 8rem 5%;
-            min-height: 80vh;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            transform-style: preserve-3d;
-        }
-        
-        .contact h2 {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3), 0 0 20px rgba(255, 0, 255, 0.3);
-        }
-        
-        .contact p {
-            font-size: 1.2rem;
-            max-width: 700px;
-            margin-bottom: 3rem;
-            line-height: 1.6;
-            color: rgba(255, 255, 255, 0.8);
-        }
-        
-        /* Footer neon */
-        footer {
-            padding: 3rem 5%;
-            background: rgba(10, 10, 15, 0.9);
-            border-top: 1px solid rgba(0, 255, 255, 0.1);
-            text-align: center;
-            position: relative;
-            transform-style: preserve-3d;
-        }
-        
-        footer::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--neon-cyan), var(--neon-magenta), transparent);
-            box-shadow: 0 0 10px var(--neon-cyan), 0 0 20px var(--neon-magenta);
-        }
-        
-        .footer-content {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-        }
-        
-        .footer-logo {
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta));
-            -webkit-background-clip: text;
-            background-clip: text;
-            color: transparent;
-            text-shadow: 0 0 10px rgba(0, 255, 255, 0.3), 0 0 20px rgba(255, 0, 255, 0.3);
-        }
-        
-        .footer-links {
-            display: flex;
-            gap: 2rem;
-            flex-wrap: wrap;
-            justify-content: center;
-        }
-        
-        .footer-links a {
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            transition: all 0.3s ease;
-        }
-        
-        .footer-links a:hover {
-            color: var(--neon-cyan);
-            text-shadow: 0 0 10px var(--neon-cyan);
-        }
-        
-        .social-links {
-            display: flex;
-            gap: 1.5rem;
-        }
-        
-        .social-links a {
-            color: white;
-            font-size: 1.5rem;
-            transition: all 0.3s ease;
-        }
-        
-        .social-links a:hover {
-            color: var(--neon-magenta);
-            transform: translateY(-5px);
-            text-shadow: 0 0 15px var(--neon-magenta);
-        }
-        
-        .copyright {
-            margin-top: 2rem;
-            color: rgba(255, 255, 255, 0.5);
+            transition: background-color 0.3s ease;
             font-size: 0.9rem;
         }
-        
-        /* Efeito de reação ao mouse */
-        @media (hover: hover) {
-            body:hover {
-                --rx: calc(var(--mouse-y) * -0.5deg);
-                --ry: calc(var(--mouse-x) * 0.5deg);
+        .auth-actions .auth-btn:hover {
+            background-color: var(--c2);
+        }
+        .auth-actions .auth-btn i {
+             margin-right: 0.5rem;
+        }
+
+        .menu-toggle { /* Botão do Menu Mobile */
+            background: none;
+            border: 1px solid var(--bo);
+            color: var(--text-secondary);
+            font-size: 1.8rem;
+            padding: 0.2rem 0.6rem;
+            border-radius: var(--brm);
+            cursor: pointer;
+            margin-left: 1rem; /* Espaço à esquerda */
+        }
+        .menu-toggle:hover {
+            color: var(--text-color);
+            background-color: var(--c5);
+        }
+
+        /* Adaptação para telas menores - Oculta botões desktop */
+        @media (max-width: 991.98px) {
+            .navBtn, .auth-actions {
+                display: none;
+            }
+            .navbar-collapse { /* Oculta menu desktop padrão */
+                 display: none !important;
+            }
+            .navbarHome {
+                padding: 0.8rem 1rem; /* Menor padding no mobile */
             }
         }
-        
-        /* Responsividade */
-        @media (max-width: 992px) {
-            .hero h1 {
-                font-size: 3.5rem;
-            }
-            
-            .tech-card h2 {
-                font-size: 2rem;
-            }
-            
-            .section-title {
-                font-size: 2.5rem;
+        /* Exibe o botão de menu mobile apenas em telas menores */
+        @media (min-width: 992px) {
+            .menu-toggle {
+                display: none;
             }
         }
-        
+
+        /* === Menu Mobile (adaptado) === */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%; /* Começa fora da tela */
+            width: 100%;
+            max-width: 320px; /* Largura do menu */
+            height: 100vh;
+            background-color: var(--c4);
+            z-index: 1040;
+            transition: left 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            border-right: 1px solid var(--bo);
+            overflow-y: auto;
+        }
+
+        .mobile-menu.open {
+            left: 0; /* Entra na tela */
+        }
+
+        .mobile-auth-container {
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+
+        .mobile-auth-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .mobile-auth-logo {
+            height: 35px;
+        }
+
+        .close-menu {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+         .close-menu:hover {
+             color: var(--text-color);
+         }
+
+        .mobile-auth-nav a {
+            display: block;
+            color: var(--text-secondary);
+            padding: 0.8rem 0;
+            text-decoration: none;
+            font-size: 1rem;
+            border-bottom: 1px solid var(--bo);
+            transition: color 0.2s ease;
+        }
+        .mobile-auth-nav a:hover, .mobile-auth-nav a.active {
+            color: var(--text-color);
+        }
+        .mobile-auth-nav a i {
+            margin-right: 0.8rem;
+            color: var(--c1);
+            width: 20px; /* Alinhamento */
+            text-align: center;
+        }
+        .mobile-auth-nav a:last-child {
+            border-bottom: none;
+        }
+
+        .mobile-auth-content {
+            margin-top: auto; /* Empurra para baixo */
+            padding-top: 2rem;
+            border-top: 1px solid var(--bo);
+        }
+
+        .auth-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            text-align: center;
+        }
+        .auth-subtitle {
+             font-size: 0.9rem;
+             color: var(--text-secondary);
+             text-align: center;
+             margin-bottom: 1.5rem;
+         }
+
+        .auth-options .auth-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 0.8rem;
+            border: 1px solid var(--bo);
+            background-color: var(--c5);
+            color: var(--text-color);
+            border-radius: var(--brm);
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        .auth-options .auth-button:hover {
+            background-color: var(--c3);
+        }
+        .auth-options .auth-button i {
+            margin-right: 0.7rem;
+            font-size: 1.1rem;
+        }
+        .auth-options .login-button i { color: var(--c1); } /* Exemplo de cor */
+        .auth-options .register-button i { color: #28a745; } /* Exemplo de cor */
+
+        .divider {
+            text-align: center;
+            margin: 1rem 0;
+            color: var(--text-secondary);
+            font-size: 0.8rem;
+            position: relative;
+        }
+        .divider span {
+            background-color: var(--c4);
+            padding: 0 10px;
+            position: relative;
+            z-index: 1;
+        }
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background-color: var(--bo);
+            z-index: 0;
+        }
+
+
+        /* === Breadcrumbs (Estilos de Axtron) === */
+        .breadcrumbs-container {
+            background-color: var(--c4); /* Fundo similar */
+            margin-bottom: 2.5rem; /* Espaçamento abaixo */
+            padding: 10px 1.5rem;
+            border-bottom: 1px solid var(--bo);
+            /* backdrop-filter: blur(6px); /* Efeito opcional */
+        }
+        .breadcrumb {
+            margin-bottom: 0;
+            padding: 0;
+            background-color: transparent;
+            font-size: 14px;
+        }
+        .breadcrumb-item {
+            display: inline-flex; /* Ajuste para alinhamento */
+            align-items: center;
+        }
+        .breadcrumb-item a {
+            color: var(--c1);
+            text-decoration: none;
+            transition: color 0.2s ease;
+        }
+        .breadcrumb-item a:hover {
+            color: var(--text-color);
+        }
+        .breadcrumb-item a i {
+            color: var(--text-color); /* Ícone da home */
+            font-size: 1.1em; /* Tamanho do ícone */
+        }
+        .breadcrumb-item.active {
+            color: var(--text-secondary); /* Cor do item ativo */
+        }
+        .breadcrumb-item + .breadcrumb-item::before {
+            color: var(--text-secondary); /* Cor do separador */
+            content: "›";
+            padding: 0 8px;
+        }
+        @media (max-width: 767.98px) {
+            .breadcrumbs-container {
+                 padding: 10px 1rem;
+                 margin-bottom: 1.5rem;
+            }
+             .breadcrumb {
+                 font-size: 13px;
+             }
+        }
+
+        /* === Conteúdo Principal === */
+        .main-content {
+            padding-bottom: 4rem; /* Espaço antes do rodapé */
+        }
+
+        .page-content {
+            position: relative;
+            width: 100%; /* Usa container do Bootstrap */
+            max-width: 1300px; /* Similar ao Axtron */
+            margin: 0 auto;
+            z-index: 1;
+        }
+
+        /* === Hero Section (Adaptada) === */
+        .hero-section-pr {
+            position: relative;
+            margin: 0 0 3rem;
+            text-align: center;
+            background: var(--c4); /* Fundo */
+            border: 1px solid var(--bo);
+            border-radius: var(--br);
+            overflow: hidden;
+            padding: 4rem 2rem; /* Padding interno */
+        }
+
+        .hero-title {
+            font-size: 2.5rem; /* Tamanho ajustado */
+            font-weight: 700;
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2rem auto;
+        }
+
+        .hero-cta { /* Botão de chamada */
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--c1);
+            color: white; /* Texto branco */
+            padding: 0.8rem 1.8rem;
+            border-radius: var(--brm);
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            font-size: 1rem;
+        }
+        .hero-cta:hover {
+            background: var(--c2);
+            transform: translateY(-2px);
+        }
+        .hero-cta i {
+            font-size: 1.2rem;
+        }
+
         @media (max-width: 768px) {
-            .navbar {
-                padding: 1rem 5%;
-            }
-            
-            .logo {
-                font-size: 1.5rem;
-            }
-            
-            .nav-links {
-                gap: 1.5rem;
-            }
-            
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-            
-            .hero p {
-                font-size: 1.1rem;
-            }
-            
-            .btn-neon {
-                padding: 0.8rem 2rem;
-                font-size: 1rem;
-            }
-            
-            .tech-card {
-                padding: 2rem;
-            }
-            
-            .section-title {
-                font-size: 2.2rem;
-                margin-bottom: 3rem;
-            }
-            
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact h2 {
-                font-size: 2.5rem;
-            }
+            .hero-section-pr { padding: 3rem 1rem; margin-bottom: 2rem; }
+            .hero-title { font-size: 2rem; }
+            .hero-subtitle { font-size: 1rem; }
+            .hero-cta { font-size: 0.9rem; padding: 0.7rem 1.5rem; }
         }
-        
-        @media (max-width: 576px) {
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-            
-            .hero p {
-                font-size: 1rem;
-            }
-            
-            .nav-links {
-                gap: 1rem;
-            }
-            
-            .tech-card {
-                padding: 1.5rem;
-            }
-            
-            .section-title {
-                font-size: 2rem;
-            }
-            
-            .service-card {
-                padding: 1.8rem;
-            }
-            
-            .contact h2 {
-                font-size: 2rem;
-            }
-            
-            .footer-links {
-                flex-direction: column;
-                gap: 1rem;
-            }
+
+        /* === Layout Produtos (Sidebar + Grid) === */
+        .products-layout {
+            display: grid;
+            grid-template-columns: 260px 1fr; /* Coluna da sidebar e coluna dos produtos */
+            gap: 2rem;
+            align-items: start;
         }
+
+        /* Sidebar */
+        .sidebar {
+            background: var(--c4);
+            border: 1px solid var(--bo);
+            border-radius: var(--br);
+            overflow: hidden;
+            position: sticky; /* Faz a sidebar acompanhar a rolagem */
+            top: 100px; /* Ajuste conforme a altura do header + espaço */
+        }
+        .sidebar-header {
+            background: var(--c5);
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid var(--bo);
+        }
+        .sidebar-title {
+            margin: 0;
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-color); /* Título mais claro */
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+        .sidebar-title i { color: var(--c1); } /* Ícone roxo */
+
+        .category-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .category-item {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            padding: 0.9rem 1.5rem;
+            color: var(--text-secondary);
+            border-bottom: 1px solid var(--bo);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none; /* Remove sublinhado do link */
+        }
+        .category-item:last-child {
+            border-bottom: none;
+        }
+        .category-item:hover {
+            background: var(--c5);
+            color: var(--text-color);
+        }
+        .category-item.active {
+            background: var(--c5);
+            color: var(--c1); /* Cor ativa */
+            border-left: 3px solid var(--c1); /* Indicador ativo */
+            padding-left: calc(1.5rem - 3px); /* Compensa a borda */
+            font-weight: 500;
+        }
+        .category-icon {
+            font-size: 1.2rem; /* Tamanho do ícone */
+            width: 20px;
+            text-align: center;
+            color: var(--c1); /* Cor do ícone */
+        }
+        .category-item.active .category-icon {
+             color: var(--c1); /* Mantém roxo no ativo */
+        }
+
+
+        /* Products Grid Area */
+        .products-container {
+            background: var(--c4);
+            border: 1px solid var(--bo);
+            border-radius: var(--br);
+            overflow: hidden;
+        }
+        .products-header {
+            background: var(--c5);
+            padding: 1.2rem 1.5rem;
+            border-bottom: 1px solid var(--bo);
+        }
+        .products-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin: 0;
+        }
+
+        /* Grid de Produtos Customizado */
+        .products-grid-custom {
+            display: grid;
+            /* Cria colunas responsivas: min 280px, max 1fr */
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1.5rem; /* Espaçamento entre cards */
+            padding: 1.5rem;
+        }
+
+        /* Card de Produto Customizado */
+        .product-card-custom {
+            background: var(--c3); /* Fundo um pouco mais escuro que o container */
+            border: 1px solid var(--bo);
+            border-radius: var(--br);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .product-card-custom:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        .product-image-custom {
+            width: 100%;
+            height: 180px; /* Altura fixa para a imagem */
+            background-color: var(--c5); /* Fundo para a imagem */
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .product-image-custom img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: cover; /* Ou 'contain' dependendo da imagem */
+        }
+        .product-content-custom {
+            padding: 1rem;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1; /* Faz o conteúdo crescer para preencher o card */
+        }
+        .product-title-custom {
+            font-size: 1rem;
+            font-weight: 600;
+            color: var(--text-color);
+            margin-bottom: 0.5rem;
+            flex-grow: 1; /* Empurra preço/botão para baixo */
+            /* Limita o título a 2 linhas (opcional) */
+            /* display: -webkit-box; */
+            /* -webkit-line-clamp: 2; */
+            /* -webkit-box-orient: vertical; */
+            /* overflow: hidden; */
+            /* text-overflow: ellipsis; */
+            min-height: 40px; /* Garante espaço mínimo para o título */
+        }
+        .product-price-custom {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--c1); /* Preço em roxo */
+            margin-bottom: 1rem;
+        }
+        .product-button-custom {
+            background-color: var(--c1);
+            color: white;
+            text-align: center;
+            padding: 0.6rem 1rem;
+            border: none;
+            border-radius: var(--brm);
+            text-decoration: none;
+            transition: background-color 0.2s ease;
+            font-weight: 500;
+            width: 100%; /* Botão ocupa toda a largura */
+        }
+        .product-button-custom:hover {
+            background-color: var(--c2);
+            color: white;
+        }
+        .product-button-custom i {
+            margin-right: 0.5rem;
+        }
+
+        /* Responsividade do Layout Principal */
+        @media (max-width: 991.98px) {
+            .products-layout {
+                grid-template-columns: 1fr; /* Coluna única */
+            }
+            .sidebar {
+                position: static; /* Remove o sticky */
+                margin-bottom: 2rem; /* Espaço abaixo da sidebar */
+                top: auto;
+            }
+            .products-grid-custom {
+                 grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Ajuste para telas médias */
+                 padding: 1rem;
+                 gap: 1rem;
+            }
+            .product-card-custom { min-height: auto; }
+            .product-image-custom { height: 160px; }
+            .product-title-custom { font-size: 0.95rem; min-height: 36px;}
+            .product-price-custom { font-size: 1.1rem; }
+        }
+
+         @media (max-width: 575.98px) {
+             .products-grid-custom {
+                 grid-template-columns: 1fr; /* Uma coluna em telas bem pequenas */
+             }
+             .product-image-custom { height: 200px; } /* Imagem maior em 1 coluna */
+         }
+
+
+        /* === Footer Simples === */
+        footer {
+            background-color: var(--c4);
+            border-top: 1px solid var(--bo);
+            padding: 2rem 1rem;
+            margin-top: 3rem;
+            text-align: center;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: var(--c1);
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+
     </style>
 </head>
 <body>
-    <!-- Navbar futurista -->
-    <nav class="navbar">
-        <div class="logo">NEON<span>TECH</span></div>
-        <div class="nav-links">
-            <a href="#home">Início</a>
-            <a href="#tech">Tecnologia</a>
-            <a href="#services">Serviços</a>
-            <a href="#contact">Contato</a>
-        </div>
-    </nav>
-    
-    <!-- Seção Hero -->
-    <section class="hero" id="home">
-        <h1>INOVE COM TECNOLOGIA HOLOGRÁFICA</h1>
-        <p>Descubra o futuro da interação digital com nossas soluções em realidade aumentada, interfaces holográficas e tecnologia de ponta para transformar sua experiência.</p>
-        <a href="#tech" class="btn-neon">EXPLORAR</a>
-    </section>
-    
-    <!-- Seção de destaque tecnológica -->
-    <section class="tech-highlight" id="tech">
-        <div class="tech-card">
-            <h2>Tecnologia Quântica</h2>
-            <p>Nossa plataforma utiliza princípios da computação quântica para oferecer processamento de dados em velocidades nunca antes vistas. Com algoritmos revolucionários, resolvemos problemas complexos em segundos.</p>
-            <p>Imagine poder simular moléculas para descoberta de medicamentos ou otimizar cadeias logísticas globais em tempo real. Isso é o que nossa tecnologia torna possível hoje.</p>
-            <a href="#contact" class="btn-neon" style="margin-top: 2rem;">SAIBA MAIS</a>
-        </div>
-    </section>
-    
-    <!-- Seção de serviços -->
-    <section class="services" id="services">
-        <h2 class="section-title">NOSSOS SERVIÇOS</h2>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">⎔</div>
-                <h3>Interfaces Holográficas</h3>
-                <p>Crie experiências imersivas com nossas interfaces holográficas personalizáveis, perfeitas para apresentações, educação e entretenimento.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">⎖</div>
-                <h3>Realidade Aumentada</h3>
-                <p>Soluções AR para varejo, manufatura e treinamento, integrando dados digitais ao mundo físico de forma intuitiva.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">⎗</div>
-                <h3>Inteligência Artificial</h3>
-                <p>Sistemas de IA que aprendem e se adaptam, oferecendo insights valiosos e automação inteligente para seu negócio.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">⎘</div>
-                <h3>Visualização de Dados 3D</h3>
-                <p>Transforme dados complexos em visualizações interativas e compreensíveis com nossa tecnologia de renderização avançada.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">⎙</div>
-                <h3>Consultoria Tecnológica</h3>
-                <p>Nossos especialistas ajudam você a navegar no cenário tecnológico em constante evolução e implementar as melhores soluções.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">⎚</div>
-                <h3>Desenvolvimento Customizado</h3>
-                <p>Soluções sob medida para suas necessidades específicas, desde protótipos até sistemas completos de produção.</p>
+
+    <div class="mobile-menu-overlay" style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.5); z-index: 1035; display: none; transition: opacity 0.3s ease;" onclick="toggleMobileMenu()"></div>
+
+    <header>
+        <div class="announcement-bar">
+            <div class="container-fluid">
+                🚀 Aproveite nossas ofertas de lançamento! <a href="#">Ver Promoções</a>
             </div>
         </div>
-    </section>
-    
-    <!-- Seção de contato -->
-    <section class="contact" id="contact">
-        <h2>PRONTO PARA O FUTURO?</h2>
-        <p>Entre em contato conosco para descobrir como nossa tecnologia pode transformar seu negócio. Nossa equipe está pronta para ajudar você a dar o próximo passo na evolução digital.</p>
-        <a href="#" class="btn-neon">FALE CONOSCO</a>
-    </section>
-    
-    <!-- Footer -->
+
+        <nav class="navbarHome">
+            <a class="navbar-brand" href="#">
+                <img src="https://via.placeholder.com/150x40.png?text=Sua+Logo" alt="Logo Sua Loja">
+            </a>
+
+            <div class="navBtn d-none d-lg-flex"> <a href="#" class="btn newBtn active"><i class="bi bi-house-door-fill"></i> Início</a>
+                 <a href="#" class="btn newBtn"><i class="bi bi-journal-bookmark-fill"></i> Cursos</a>
+                 <a href="#" class="btn newBtn"><i class="bi bi-book-fill"></i> Ebooks</a>
+                 <a href="#" class="btn newBtn"><i class="bi bi-tools"></i> Ferramentas</a>
+            </div>
+
+             <div class="auth-actions d-none d-lg-block"> <button class="auth-btn" onclick="alert('Funcionalidade de Login não implementada neste template.')">
+                    <i class="bi bi-box-arrow-in-right"></i>
+                    <span>Login / Criar Conta</span>
+                </button>
+            </div>
+
+            <button class="menu-toggle d-lg-none" type="button" aria-label="Menu" onclick="toggleMobileMenu()"> <i class="bi bi-list"></i>
+            </button>
+        </nav>
+
+        <div class="mobile-menu" id="mobileMenu">
+            <div class="mobile-auth-container">
+                 <div class="mobile-auth-header">
+                     <img src="https://via.placeholder.com/150x40.png?text=Sua+Logo" alt="Logo" class="mobile-auth-logo">
+                     <button class="close-menu" aria-label="Fechar" onclick="toggleMobileMenu()">
+                         <i class="bi bi-x-lg"></i>
+                     </button>
+                 </div>
+
+                 <nav class="mobile-auth-nav">
+                     <a href="#" class="active"><i class="bi bi-house-door-fill"></i> Início</a>
+                     <a href="#"><i class="bi bi-journal-bookmark-fill"></i> Cursos</a>
+                     <a href="#"><i class="bi bi-book-fill"></i> Ebooks</a>
+                     <a href="#"><i class="bi bi-tools"></i> Ferramentas</a>
+                 </nav>
+
+                 <div class="mobile-auth-content">
+                     <h2 class="auth-title">Bem-vindo!</h2>
+                     <p class="auth-subtitle">Acesse sua conta para continuar</p>
+
+                     <div class="auth-options">
+                         <button class="auth-button login-button" onclick="alert('Funcionalidade de Login não implementada.')">
+                             <i class="bi bi-box-arrow-in-right"></i>
+                             <span>Entrar com Email</span>
+                         </button>
+                         <button class="auth-button register-button" onclick="alert('Funcionalidade de Registro não implementada.')">
+                             <i class="bi bi-person-plus-fill"></i>
+                             <span>Criar Nova Conta</span>
+                         </button>
+                     </div>
+                 </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="breadcrumbs-container">
+        <div class="container">
+            <nav aria-label="breadcrumb">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="#"><i class="bi bi-house-door-fill"></i></a></li>
+                    <li class="breadcrumb-item active" aria-current="page">Produtos</li>
+                </ol>
+            </nav>
+        </div>
+    </div>
+
+    <main class="main-content">
+        <div class="container page-content">
+
+            <div class="hero-section-pr">
+                <h1 class="hero-title">Nossos Cursos e Produtos Digitais</h1>
+                <p class="hero-subtitle">
+                    Encontre o conhecimento e as ferramentas que você precisa para alcançar seus objetivos. Qualidade e conteúdo atualizado.
+                </p>
+                <a href="#" class="hero-cta" onclick="alert('Botão de Exemplo Clicado!')">
+                    <i class="bi bi-rocket-takeoff-fill"></i> Comece a Aprender Agora
+                </a>
+            </div>
+
+            <div class="products-layout">
+
+                <aside class="sidebar">
+                    <div class="sidebar-header">
+                        <h3 class="sidebar-title"><i class="bi bi-filter-left"></i> Categorias</h3>
+                    </div>
+                    <ul class="category-list">
+                        <li><a href="#" class="category-item active"> <i class="bi bi-star-fill category-icon"></i> Todos os Produtos</a></li>
+                        <li><a href="#" class="category-item"> <i class="bi bi-camera-reels-fill category-icon"></i> Cursos Online</a></li>
+                        <li><a href="#" class="category-item"> <i class="bi bi-book-half category-icon"></i> Ebooks e Guias</a></li>
+                        <li><a href="#" class="category-item"> <i class="bi bi-tools category-icon"></i> Ferramentas Digitais</a></li>
+                        <li><a href="#" class="category-item"> <i class="bi bi-palette-fill category-icon"></i> Templates e Recursos</a></li>
+                        <li><a href="#" class="category-item"> <i class="bi bi-graph-up-arrow category-icon"></i> Marketing e Vendas</a></li>
+                    </ul>
+                </aside>
+
+                <section class="products-container">
+                    <div class="products-header">
+                        <h2 class="products-title">Todos os Produtos</h2>
+                        </div>
+
+                    <div class="products-grid-custom">
+
+                        <div class="product-card-custom">
+                            <div class="product-image-custom">
+                                <img src="https://placehold.co/600x400/8a4ecf/FFFFFF/png?text=Curso+Marketing" alt="Nome do Curso 1">
+                            </div>
+                            <div class="product-content-custom">
+                                <h3 class="product-title-custom">Curso Completo de Marketing Digital para Iniciantes</h3>
+                                <p class="product-price-custom">R$ 197,00</p>
+                                <a href="#" class="product-button-custom" onclick="alert('Botão Comprar Clicado!')">
+                                    <i class="bi bi-cart-plus-fill"></i> Comprar Agora
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="product-card-custom">
+                            <div class="product-image-custom">
+                                <img src="https://placehold.co/600x400/2a2c33/FFFFFF/png?text=Ebook+Finanças" alt="Nome do Ebook 1">
+                            </div>
+                            <div class="product-content-custom">
+                                <h3 class="product-title-custom">Ebook: Organização Financeira Pessoal Descomplicada</h3>
+                                <p class="product-price-custom">R$ 49,90</p>
+                                <a href="#" class="product-button-custom" onclick="alert('Botão Comprar Clicado!')">
+                                     <i class="bi bi-cart-plus-fill"></i> Comprar Agora
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="product-card-custom">
+                            <div class="product-image-custom">
+                                <img src="https://placehold.co/600x400/363942/FFFFFF/png?text=Ferramenta+SEO" alt="Nome da Ferramenta 1">
+                            </div>
+                            <div class="product-content-custom">
+                                <h3 class="product-title-custom">Ferramenta de Análise de Palavras-chave (Assinatura Mensal)</h3>
+                                <p class="product-price-custom">R$ 79,00 /mês</p>
+                                <a href="#" class="product-button-custom" onclick="alert('Botão Comprar Clicado!')">
+                                     <i class="bi bi-cart-plus-fill"></i> Assinar Agora
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="product-card-custom">
+                            <div class="product-image-custom">
+                                <img src="https://placehold.co/600x400/8a4ecf/FFFFFF/png?text=Curso+Design" alt="Nome do Curso 2">
+                            </div>
+                            <div class="product-content-custom">
+                                <h3 class="product-title-custom">Curso de Design Gráfico Essencial com Figma</h3>
+                                <p class="product-price-custom">R$ 247,00</p>
+                                <a href="#" class="product-button-custom" onclick="alert('Botão Comprar Clicado!')">
+                                     <i class="bi bi-cart-plus-fill"></i> Comprar Agora
+                                </a>
+                            </div>
+                        </div>
+
+                         <div class="product-card-custom">
+                            <div class="product-image-custom">
+                                <img src="https://placehold.co/600x400/2a2c33/FFFFFF/png?text=Template+Site" alt="Nome do Template 1">
+                            </div>
+                            <div class="product-content-custom">
+                                <h3 class="product-title-custom">Pack de Templates Premium para Landing Pages</h3>
+                                <p class="product-price-custom">R$ 97,00</p>
+                                <a href="#" class="product-button-custom" onclick="alert('Botão Comprar Clicado!')">
+                                     <i class="bi bi-cart-plus-fill"></i> Comprar Agora
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="product-card-custom">
+                            <div class="product-image-custom">
+                                <img src="https://placehold.co/600x400/363942/FFFFFF/png?text=Guia+Copy" alt="Nome do Guia 1">
+                            </div>
+                            <div class="product-content-custom">
+                                <h3 class="product-title-custom">Guia Definitivo de Copywriting para Vendas Online</h3>
+                                <p class="product-price-custom">R$ 69,90</p>
+                                <a href="#" class="product-button-custom" onclick="alert('Botão Comprar Clicado!')">
+                                     <i class="bi bi-cart-plus-fill"></i> Comprar Agora
+                                </a>
+                            </div>
+                        </div>
+
+                        </div>
+                </section>
+
+            </div> </div> </main>
+
     <footer>
-        <div class="footer-content">
-            <div class="footer-logo">NEON<span>TECH</span></div>
-            <div class="footer-links">
-                <a href="#home">Início</a>
-                <a href="#tech">Tecnologia</a>
-                <a href="#services">Serviços</a>
-                <a href="#contact">Contato</a>
-                <a href="#">Privacidade</a>
-                <a href="#">Termos</a>
-            </div>
-            <div class="social-links">
-                <a href="#">⎈</a>
-                <a href="#">⎉</a>
-                <a href="#">⎊</a>
-                <a href="#">⎋</a>
-            </div>
-            <div class="copyright">
-                © 2025 NeonTech Futuro. Todos os direitos reservados.
-            </div>
+        <div class="container">
+            <p>&copy; 2024 Sua Loja de Cursos. Todos os direitos reservados.</p>
+            <p>
+                <a href="#">Termos de Uso</a> | <a href="#">Política de Privacidade</a> | <a href="#">Contato</a>
+            </p>
         </div>
     </footer>
-    
-    <!-- Script para efeito de movimento do mouse (puro CSS não suporta isso, então usamos um mínimo de JS) -->
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
-        // Pequeno script apenas para o efeito 3D com mouse
-        document.addEventListener('mousemove', (e) => {
-            const x = e.clientX / window.innerWidth;
-            const y = e.clientY / window.innerHeight;
-            
-            document.documentElement.style.setProperty('--mouse-x', (x - 0.5) * 2);
-            document.documentElement.style.setProperty('--mouse-y', (y - 0.5) * 2);
+        // Script para controlar o header ao rolar (adaptado de Axtron)
+        window.addEventListener('scroll', function() {
+            const header = document.querySelector('header');
+            const body = document.body;
+            const headerHeight = header.offsetHeight; // Pega a altura dinâmica
+
+            if (window.scrollY > 150) { // Mostra o efeito após rolar um pouco
+                header.classList.add('onScroll');
+                // Ajusta o padding do body para compensar o header fixo APENAS se ele for fixo/sticky
+                // Neste exemplo, ele é sticky, então o padding-top pode não ser necessário ou precisar de ajuste
+                // body.style.paddingTop = headerHeight + 'px';
+            } else {
+                header.classList.remove('onScroll');
+                // body.style.paddingTop = '0px';
+            }
         });
+
+        // Script para controlar o menu mobile
+        const mobileMenu = document.getElementById('mobileMenu');
+        const overlay = document.querySelector('.mobile-menu-overlay');
+
+        function toggleMobileMenu() {
+            const isOpen = mobileMenu.classList.contains('open');
+            if (isOpen) {
+                mobileMenu.classList.remove('open');
+                overlay.style.display = 'none';
+                overlay.style.opacity = '0';
+                document.body.style.overflow = ''; // Permite scroll no body
+            } else {
+                mobileMenu.classList.add('open');
+                overlay.style.display = 'block';
+                // Pequeno delay para a transição de opacidade funcionar
+                setTimeout(() => {
+                    overlay.style.opacity = '1';
+                }, 10);
+                document.body.style.overflow = 'hidden'; // Impede scroll no body
+            }
+        }
+
+        // Opcional: Fechar menu se clicar em um link (bom para SPAs, mas útil aqui também)
+        document.querySelectorAll('.mobile-auth-nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                if (mobileMenu.classList.contains('open')) {
+                    toggleMobileMenu();
+                }
+            });
+        });
+
     </script>
+
 </body>
 </html>
